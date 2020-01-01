@@ -7,7 +7,7 @@ class Explore extends React.Component{
         return(
             <View style={styles.container}>
                 <Text>
-                    Explore
+                    Explore Navigation
                 </Text>
             </View>
         )

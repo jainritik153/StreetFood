@@ -6,7 +6,7 @@ class Favourite extends React.Component{
         return(
             <View style={styles.container}>
                 <Text>
-                    Favourite
+                    Favourite Screen 
                 </Text>
             </View>
         )

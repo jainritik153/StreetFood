@@ -7,7 +7,7 @@ class NearMe extends React.Component{
         return(
                 <View style={{flex:1,padding:30}}>
                   <Text>
-                      Ritik
+                      Ritik Jain
                   </Text>
                 </View>
            
