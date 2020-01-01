@@ -63,7 +63,7 @@ const TabNavigator=createBottomTabNavigator({
 {
   tabBarOptions:{
     activeTintColor:Color.main_color,
-    inactiveTintColor:'white',
+    inactiveTintColor:'grey',
     style:{
       backgroundColor:Color.secondary_color,
       borderTopWidth:0,
