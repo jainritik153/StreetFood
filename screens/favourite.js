@@ -1,13 +1,14 @@
 import React from 'react'
 import {View,  Text,StyleSheet} from 'react-native';
+import Header from '../components/header'
 
 class Favourite extends React.Component{
     render(){
         return(
             <View style={styles.container}>
-                <Text>
-                    Favourite Screen 
-                </Text>
+                <Header>
+                    
+                </Header>
             </View>
         )
     }
@@ -16,8 +17,6 @@ class Favourite extends React.Component{
 const styles=StyleSheet.create({
     container:{
         flex:1,
-        alignItems:'center',
-        justifyContent:'center'
     }
 })
 

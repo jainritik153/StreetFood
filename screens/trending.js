@@ -1,24 +1,20 @@
 import React from 'react'
 import {View,  Text,StyleSheet} from 'react-native';
+import Header from '../components/header'
 
 class Trending extends React.Component{
     render(){
         return(
-            <View style={styles.container}>
-                <Text>
-                    Trending
-                </Text>
+            <View style={{flex:1}}>
+                <Header>
+
+                </Header>
             </View>
         )
     }
 }
 
 const styles=StyleSheet.create({
-    container:{
-        flex:1,
-        alignItems:'center',
-        justifyContent:'center'
-    }
 })
 
 export default Trending;

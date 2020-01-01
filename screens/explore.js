@@ -1,26 +1,22 @@
 import React from 'react'
 import {View,  Text,StyleSheet, ColorPropType} from 'react-native';
 import Color from '../assets/color'
+import Header from '../components/header'
 
 class Explore extends React.Component{
     render(){
         return(
-            <View style={styles.container}>
-                <Text>
-                    Explore Navigation
-                </Text>
+            <View style={{flex:1}}>
+                <Header>
+                    
+                </Header>
             </View>
         )
     }
 }
 
 const styles=StyleSheet.create({
-    container:{
-        flex:1,
-        alignItems:'center',
-        justifyContent:'center',
-       
-    }
+  
 })
 
 export default Explore;
