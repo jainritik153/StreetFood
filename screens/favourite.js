@@ -1,6 +1,7 @@
 import React from 'react'
 import {View,  Text,StyleSheet} from 'react-native';
 import Header from '../components/header'
+import Color from '../assets/color'
 
 class Favourite extends React.Component{
     render(){
@@ -17,6 +18,7 @@ class Favourite extends React.Component{
 const styles=StyleSheet.create({
     container:{
         flex:1,
+        backgroundColor:Color.screen_bg_color
     }
 })
 

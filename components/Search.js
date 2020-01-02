@@ -28,14 +28,15 @@ const styles=StyleSheet.create({
         flex:1,
         flexDirection:'row',
         alignItems:"center",
-        justifyContent:"flex-start",
-        borderWidth:0.5,
+        justifyContent:"center",
+        borderWidth:1,
         marginVertical:5,
-        borderColor:Color.main_color,
-        
-        padding:3,
-        borderRadius:8,
-        marginHorizontal:2
+        borderColor:Color.screen_bg_color,
+        elevation:25,
+        padding:8,
+        borderRadius:25,
+        marginHorizontal:2,
+        backgroundColor:"white"
     },
     icon:{
         

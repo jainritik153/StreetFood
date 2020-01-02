@@ -26,19 +26,20 @@ export default class Card extends React.Component{
 
 const styles=StyleSheet.create({
     container:{
-        height:"70%",
-        backgroundColor:"black",
+        flex:1,
+        height:400,
+        backgroundColor:Color.secondary_color,
         margin:3,
         elevation:25,
         borderRadius:20
     },
     cardHeaderContainer:{
-        height:"14%",
+        height:60,
         borderBottomColor:"grey",
         borderBottomWidth:0.2,
     },
     videoContainer:{
-        height:"65%",
+        height:250,
         borderBottomColor:"grey",
         borderBottomWidth:0.2,
     },
