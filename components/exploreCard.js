@@ -13,7 +13,7 @@ export default class ExploreCard extends React.Component{
             <View style={styles.container}>
                 <View style={styles.exploreCardHeader}>
                    <Text style={{color:Color.main_color,padding:10}}>
-                       Food Categpry
+                       {this.props.foodCategory}
                    </Text>
                 </View>
                 <ScrollView horizontal={true}> 

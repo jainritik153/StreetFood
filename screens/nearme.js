@@ -21,12 +21,12 @@ class NearMe extends React.Component{
                     <LocationHeader/>     
                 </Header>
                 <ScrollView>
-                   <Card></Card>
-                   <Card></Card>
-                   <Card></Card>
-                   <Card></Card>
-                   <Card></Card>
-                   <Card></Card>
+                   <Card  header={"Vendorname"} img={"https://im.rediff.com/getahead/2017/mar/28foodies5.jpg"} footer={"footer"}></Card>
+                   <Card header={"Vendorname"} img={"https://im.rediff.com/getahead/2017/mar/28foodies5.jpg"} footer={"footer"} ></Card>
+                   <Card header={"Vendorname"} img={"https://im.rediff.com/getahead/2017/mar/28foodies5.jpg"} footer={"footer"} ></Card>
+                   <Card header={"Vendorname"} img={"https://im.rediff.com/getahead/2017/mar/28foodies5.jpg"} footer={"footer"} ></Card>
+                   <Card  header={"Vendorname"} img={"https://im.rediff.com/getahead/2017/mar/28foodies5.jpg"} footer={"footer"}></Card>
+                   <Card  header={"Vendorname"} img={"https://im.rediff.com/getahead/2017/mar/28foodies5.jpg"} footer={"footer"}></Card>
                 </ScrollView>
     
             </View>

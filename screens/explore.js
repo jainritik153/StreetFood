@@ -12,7 +12,9 @@ class Explore extends React.Component{
                 <Header>
                     <Search/>
                 </Header>
-                <ExploreView></ExploreView>
+                <ExploreView>
+
+                </ExploreView>
             </View>
         )
     }

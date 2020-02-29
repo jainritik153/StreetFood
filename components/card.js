@@ -1,5 +1,5 @@
 import React from 'react'
-import {View , Text,StyleSheet } from 'react-native'
+import {View , Text,StyleSheet, Image } from 'react-native'
 import Color from '../assets/color'
 
 export default class Card extends React.Component{
@@ -11,13 +11,17 @@ export default class Card extends React.Component{
         return(
             <View style={styles.container}>
                 <View style={styles.cardHeaderContainer}>
-                    <Text style={styles.text}>Card Header</Text>
+                    <Text style={styles.text}>{this.props.header}</Text>
                 </View>
                 <View style={styles.videoContainer}>
-                    <Text style={styles.text}>Video</Text>
+                    <Image source={{uri : this.props.img}}
+                       style={{ height:260 }}  
+                    >
+
+                    </Image>
                 </View>
                 <View style={styles.cardFooter}>
-                    <Text style={styles.text}>Card Footer</Text>
+                    <Text style={styles.text}> {this.props.footer} </Text>
                 </View>
             </View>
         )

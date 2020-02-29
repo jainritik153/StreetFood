@@ -1,5 +1,5 @@
 import React from 'react'
-import {View , Text,StyleSheet } from 'react-native'
+import {View , Text,StyleSheet,Image } from 'react-native'
 import Color from '../assets/color'
 import color from '../assets/color';
 
@@ -10,9 +10,7 @@ export default class ExploreCardVideo extends React.Component{
     render(){
         return(
             <View style={styles.videoContainer}>
-                <Text style={{color:Color.main_color}}>
-                    Food Video
-                </Text>
+                <Image source={{uri:'https://im.rediff.com/getahead/2017/mar/28foodies5.jpg' } }></Image>
             </View>
         )
     }

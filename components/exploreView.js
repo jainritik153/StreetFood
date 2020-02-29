@@ -12,9 +12,9 @@ export default class ExploreView extends React.Component{
         return(
             <ScrollView>
                 <View >
-                    <ExploreCard></ExploreCard>
-                    <ExploreCard></ExploreCard>
-                    <ExploreCard></ExploreCard>
+                    <ExploreCard foodCategory={"Chineese"}></ExploreCard>
+                    <ExploreCard foodCategory={"South Indian"}></ExploreCard>
+                    <ExploreCard foodCategory={"Italian"}></ExploreCard>
                 </View> 
             </ScrollView>
         )
