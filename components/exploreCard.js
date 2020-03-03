@@ -11,42 +11,26 @@ export default class ExploreCard extends React.Component{
     render(){
         return(
             <View style={styles.container}>
-                <View style={styles.exploreCardHeader}>
-                   <Text style={{color:Color.main_color,padding:10}}>
-                       {this.props.foodCategory}
-                   </Text>
-                </View>
-                <ScrollView horizontal={true}> 
-                    <View style={{flexDirection:"row"}}>
-                        <ExploreCardVideo></ExploreCardVideo>
-                        <ExploreCardVideo></ExploreCardVideo>
-                        <ExploreCardVideo></ExploreCardVideo>
-                        <ExploreCardVideo></ExploreCardVideo>
-                    </View>
-                    
+
+                <ScrollView horizontal={true}>
+                    <ExploreCardVideo url={"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTlyN7ciOruKPs6O0JwUyjMtBUZIqNS12NjrcHqdbOFU8Tecebg"}></ExploreCardVideo>
+                    <ExploreCardVideo url={"https://static.toiimg.com/photo/62441716/.jpg"}></ExploreCardVideo>
+                    <ExploreCardVideo url={"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRetmTnP7Q9XXQDIWE1Cf-P4tWPJv9pUrnhro8cRjR8DP91OUal"}></ExploreCardVideo>
                 </ScrollView>
-                
             </View>
         )
     }
 }
 
 const styles=StyleSheet.create({
-    container:{
-        height:250,
-        backgroundColor:Color.secondary_color,
-        marginLeft:2,
+  container:{
+      backgroundColor:Color.screen_bg_color,
+      marginLeft:10,
+      marginTop:10,
+      display:"flex",
+      flexDirection:"row",
+      alignItems:"center",
+      
 
-        marginTop:8,
-        marginBottom:2,
-        borderTopLeftRadius:5,
-        borderTopEndRadius:5,
-        elevation:20
-
-    },
-    exploreCardHeader:{
-       height:45,
-       borderBottomColor:Color.screen_bg_color,
-       borderBottomWidth:1,
-    },
+  }
 })

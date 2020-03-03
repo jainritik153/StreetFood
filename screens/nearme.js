@@ -12,7 +12,6 @@ import LocationHeader from '../components/locationHeader'
 import Card from '../components/card'
 import Color from '../assets/color'
 
-
 class NearMe extends React.Component{
     render(){
         return(
@@ -21,12 +20,18 @@ class NearMe extends React.Component{
                     <LocationHeader/>     
                 </Header>
                 <ScrollView>
-                   <Card  header={"Vendorname"} img={"https://im.rediff.com/getahead/2017/mar/28foodies5.jpg"} footer={"footer"}></Card>
-                   <Card header={"Vendorname"} img={"https://im.rediff.com/getahead/2017/mar/28foodies5.jpg"} footer={"footer"} ></Card>
-                   <Card header={"Vendorname"} img={"https://im.rediff.com/getahead/2017/mar/28foodies5.jpg"} footer={"footer"} ></Card>
-                   <Card header={"Vendorname"} img={"https://im.rediff.com/getahead/2017/mar/28foodies5.jpg"} footer={"footer"} ></Card>
-                   <Card  header={"Vendorname"} img={"https://im.rediff.com/getahead/2017/mar/28foodies5.jpg"} footer={"footer"}></Card>
-                   <Card  header={"Vendorname"} img={"https://im.rediff.com/getahead/2017/mar/28foodies5.jpg"} footer={"footer"}></Card>
+                   <Card  header={"Vendor_name"} img={"https://im.rediff.com/getahead/2017/mar/28foodies5.jpg"} footer={"Likes:100"}></Card>
+                   <Card header={"Vendor_name"} img={"https://im.rediff.com/getahead/2017/mar/28foodies5.jpg"} footer={"Likes:100"} ></Card>
+                   <Text style={{fontSize:17,fontWeight:"bold"}}
+                    >
+                        Recommendations for you 
+                    </Text>
+
+
+                   <Card header={"Vendor_name"} img={"https://im.rediff.com/getahead/2017/mar/28foodies5.jpg"} footer={"Likes:100"} ></Card>
+                   <Card header={"Vendor_name"} img={"https://im.rediff.com/getahead/2017/mar/28foodies5.jpg"} footer={"Likes:100"} ></Card>
+                   <Card  header={"Vendor_name"} img={"https://im.rediff.com/getahead/2017/mar/28foodies5.jpg"} footer={"Likes:100"}></Card>
+                   <Card  header={"Vendor_name"} img={"https://im.rediff.com/getahead/2017/mar/28foodies5.jpg"} footer={"Likes:100"}></Card>
                 </ScrollView>
     
             </View>

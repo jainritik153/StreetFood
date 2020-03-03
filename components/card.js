@@ -15,7 +15,7 @@ export default class Card extends React.Component{
                 </View>
                 <View style={styles.videoContainer}>
                     <Image source={{uri : this.props.img}}
-                       style={{ height:260 }}  
+                       style={{ height:290 }}  
                     >
 
                     </Image>
@@ -31,11 +31,12 @@ export default class Card extends React.Component{
 const styles=StyleSheet.create({
     container:{
         flex:1,
-        height:400,
+        height:410,
         backgroundColor:Color.secondary_color,
-        margin:3,
+        marginTop:5,
+        marginBottom:10,
         elevation:25,
-        borderRadius:20
+        borderRadius:3
     },
     cardHeaderContainer:{
         height:60,
@@ -43,9 +44,9 @@ const styles=StyleSheet.create({
         borderBottomWidth:0.2,
     },
     videoContainer:{
-        height:250,
+        height:290,
         borderBottomColor:"grey",
-        borderBottomWidth:0.2,
+        borderBottomWidth:0.5,
     },
     text:{
         color:Color.main_color,

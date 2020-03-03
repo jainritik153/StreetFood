@@ -9,19 +9,49 @@ export default class ExploreCardVideo extends React.Component{
     }
     render(){
         return(
-            <View style={styles.videoContainer}>
-                <Image source={{uri:'https://im.rediff.com/getahead/2017/mar/28foodies5.jpg' } }></Image>
-            </View>
+                <View style={styles.videoContainer}>
+                    <View style={styles.image}>   
+                        <Image source={{uri: this.props.url } }
+                               style={styles.image}
+                        >
+
+                        </Image>
+                    </View>     
+                    <View style={styles.footer}>
+                        <Text style={styles.footerText}>Dish Name</Text>
+                        <Text style={{fontSize:11}}>Dish Description with location details</Text>
+                        <Text></Text>
+                        <Text style={{fontSize:10, color:Color.main_color}}>Finest Place to eat in Bhayandar</Text>
+                    </View>
+                    
+                </View>  
         )
     }
 }
 
 const styles=StyleSheet.create({
     videoContainer:{
-        height:205,
+        display:"flex",
+        flexDirection:"column",
+         height:220,
         width:150,
-        borderWidth:1,
-        borderColor:Color.screen_bg_color,
-        margin:1,
+        borderColor:"black",
+        marginRight:15,
+        backgroundColor:"white",
+        shadowColor:"black",
+        elevation:5
+    },
+    image:{
+        flex:2,
+        borderBottomWidth:0.2,
+    },
+    footer:{
+        flex:1,
+        marginBottom:15,
+        
+    },
+    footerText:{
+        fontWeight:"bold",
+        fontSize:15
     }
 })
