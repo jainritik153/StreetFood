@@ -92,7 +92,9 @@ const styles = StyleSheet.create({
     width: 340,
     backgroundColor: "rgba(255,255,255,0.2)",
     marginBottom: 20,
-    paddingHorizontal: 10
+    paddingHorizontal: 10,
+    borderColor:"black",
+    borderWidth:0.2
   },
   buttonContainer: {
     backgroundColor: Color.main_color,

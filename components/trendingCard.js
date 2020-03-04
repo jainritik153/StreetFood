@@ -12,14 +12,11 @@ export default class TrendingCard extends React.Component {
     return (
       <View style={styles.container}>
         <ScrollView horizontal={true}>
-          <View
-            style={{ flexDirection: "row", marginTop: 20, marginBottom: 20 }}
-          >
-            <TrendingCardVideo></TrendingCardVideo>
-            <TrendingCardVideo></TrendingCardVideo>
-            <TrendingCardVideo></TrendingCardVideo>
-            <TrendingCardVideo></TrendingCardVideo>
-          </View>
+            <TrendingCardVideo url={"https://static.toiimg.com/photo/62441716/.jpg"}></TrendingCardVideo>
+            <TrendingCardVideo url={"https://static.toiimg.com/photo/62441716/.jpg"}></TrendingCardVideo>
+            <TrendingCardVideo url={"https://static.toiimg.com/photo/62441716/.jpg"}></TrendingCardVideo>
+            <TrendingCardVideo url={"https://static.toiimg.com/photo/62441716/.jpg"}></TrendingCardVideo>
+  
         </ScrollView>
       </View>
     );
@@ -28,15 +25,9 @@ export default class TrendingCard extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: Color.secondary_color,
-    marginLeft: 2,
-
-    marginTop: 8,
+    backgroundColor: Color.screen_bg_color ,
+    marginTop: 60,
     marginBottom: 2,
-    borderTopLeftRadius: 5,
-    borderBottomLeftRadius: 5,
-    borderTopEndRadius: 5,
-    borderBottomEndRadius: 5,
-    elevation: 20
+    marginRight:10,
   }
 });
