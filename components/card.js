@@ -32,11 +32,11 @@ const styles=StyleSheet.create({
     container:{
         flex:1,
         height:410,
-        backgroundColor:Color.secondary_color,
-        marginTop:5,
-        marginBottom:10,
-        elevation:25,
-        borderRadius:3
+        backgroundColor:Color.main_color,
+        elevation:10,
+        borderRadius:10,
+        margin:10,
+
     },
     cardHeaderContainer:{
         height:60,
@@ -49,7 +49,7 @@ const styles=StyleSheet.create({
         borderBottomWidth:0.5,
     },
     text:{
-        color:Color.main_color,
+        color:Color.secondary_color,
         padding:20
     }
 

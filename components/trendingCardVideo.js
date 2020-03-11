@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet, ImageBackground } from "react-native";
+import { View, Text, StyleSheet, ImageBackground} from "react-native";
 import {Button} from 'react-native-elements'
 import Color from "../assets/color";
 import color from "../assets/color";
@@ -10,22 +10,24 @@ export default class TrendingCardVideo extends React.Component {
   }
   render() {
     return (
-      <View>
-        <View style={{display:"flex",flexDirection:"row",justifyContent:"space-between"}}>
-            <Text style={styles.Text}>
-              Trending video     
-            </Text>
-            <Text style={{color:"green",marginRight:15,fontWeight:"bold"}}>
-              Details..
-            </Text>
-        </View>   
-          <View style={styles.videoContainer}>
+      <View style={ styles.videoContainer} > 
             <ImageBackground source={{uri:this.props.url}}
-                style={{height:450,borderRadius:25,display:"flex",flexDirection:"column",justifyContent:"flex-end"}}
-             >
-               <Button  title="Watch Video" type="outline" color="white"></Button>
+                  style={{height:"100%",width:"100%",alignItems:"center",justifyContent:"center",flex:1}}
+                  imageStyle={{ borderRadius:10}}
+            >
+              <View style={{display:"flex",flex:1, flexDirection:"column",justifyContent:"center",alignItems:"center"}}>
+                  <Text style={styles.text}>
+                      {this.props.category}
+                  </Text>
+                  <Button  type="outline"  buttonStyle={{width:320,height:40}}>
+                      <Text style={styles.text}>
+                        See Videos
+                      </Text>
+                  </Button>
+              </View>
+                  
+              
             </ImageBackground>
-      </View>
       </View>
       
     );
@@ -34,19 +36,23 @@ export default class TrendingCardVideo extends React.Component {
 
 const styles = StyleSheet.create({
   videoContainer: {
-    height: 450,
+    height:200,
     width: 320,
-    borderWidth: 1,
-    borderColor: "white",
-    backgroundColor:"white",
     marginLeft:20,
-    borderRadius:25
+    borderRadius:10,
+    marginBottom:40,
+    elevation:5
+   
   },
-  Text:{
-    fontSize:16,
-    marginLeft:25,
+  text:{
+    fontSize:40,
     marginBottom:5,
-    fontWeight:"bold"
+    fontWeight:"bold",
+    color:"white",
+    flex:2, 
+    textAlign:"center",
+    textAlignVertical:"center"
+
   }
 });
 

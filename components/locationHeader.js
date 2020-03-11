@@ -54,6 +54,6 @@ const styles=StyleSheet.create({
         paddingRight:20
     },
     text:{
-        color:Color.main_color,
+        color:Color.secondary_color,
     }
 })

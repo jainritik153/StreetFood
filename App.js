@@ -9,6 +9,9 @@ import Favourite from './screens/favourite'
 import Profile from './screens/Profile'
 import Icon from 'react-native-vector-icons/Ionicons'
 import Color from './assets/color'
+import {NavigationContainer, } from 'react-navigation'
+import TrendingCategroy from './components/TrendingCategoryWise'
+
 
 
 const TabNavigator=createBottomTabNavigator({
@@ -39,17 +42,8 @@ const TabNavigator=createBottomTabNavigator({
       )
     }
   },
-  Favourites:{
-    screen:Favourite,
-    navigationOptions:{
-      tabBarLabel:"Favourite",
-      tabBarIcon:({tintColor})=>(
-        <Icon name='md-heart' color={tintColor} size={24}/>
-      )
-    }
-  },
   Profile:{
-    screen:Profile,
+    screen:TrendingCategroy,
     navigationOptions:{
       tabBarLabel:"Profile",
       tabBarIcon:({tintColor})=>(
@@ -62,10 +56,10 @@ const TabNavigator=createBottomTabNavigator({
 },
 {
   tabBarOptions:{
-    activeTintColor:Color.main_color,
+    activeTintColor:"black",
     inactiveTintColor:'grey',
     style:{
-      backgroundColor:Color.secondary_color,
+      backgroundColor:Color.screen_bg_color,
       borderTopWidth:0,
       elevation:5,
     }

@@ -8,10 +8,7 @@ import Search from '../components/Search'
 class Trending extends React.Component {
   render() {
     return (
-      <View style={{ flex: 1, backgroundColor: Color.screen_bg_color }}>
-        <Header>
-          <Search></Search>
-        </Header>
+      <View style={{ flex: 1,backgroundColor:Color.main_color}}>
         <TrendingCard></TrendingCard>
       </View>
     );
