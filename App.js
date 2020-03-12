@@ -11,7 +11,7 @@ import Icon from 'react-native-vector-icons/Ionicons'
 import Color from './assets/color'
 import {NavigationContainer, } from 'react-navigation'
 import TrendingCategroy from './components/TrendingCategoryWise'
-
+import VendorProfile from './components/VendorProfile'
 
 
 const TabNavigator=createBottomTabNavigator({
@@ -43,7 +43,7 @@ const TabNavigator=createBottomTabNavigator({
     }
   },
   Profile:{
-    screen:TrendingCategroy,
+    screen:VendorProfile,
     navigationOptions:{
       tabBarLabel:"Profile",
       tabBarIcon:({tintColor})=>(
