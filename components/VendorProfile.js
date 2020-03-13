@@ -1,8 +1,17 @@
 import React from "react";
-import { View, Text, StyleSheet, ScrollView ,SafeAreaView,Image} from "react-native";
+import { View, Text, StyleSheet, ScrollView ,SafeAreaView,Image,ImageBackground} from "react-native";
 import {Ionicons , MaterialIcons} from 'react-native-vector-icons'
 import Color from "../assets/color";
 import color from "../assets/color";
+
+
+const images=[
+    {id:1,uri:'https://media-cdn.tripadvisor.com/media/photo-s/06/0f/1a/fc/bombay-express.jpg'},
+    {id:2,uri:'https://media-cdn.tripadvisor.com/media/photo-s/06/0f/1a/fc/bombay-express.jpg'},
+    {id:3,uri:'https://media-cdn.tripadvisor.com/media/photo-s/06/0f/1a/fc/bombay-express.jpg'},
+    {id:4,uri:'https://media-cdn.tripadvisor.com/media/photo-s/06/0f/1a/fc/bombay-express.jpg'},
+    {id:5,uri:'https://media-cdn.tripadvisor.com/media/photo-s/06/0f/1a/fc/bombay-express.jpg'},
+]
 
 export default function VendorProfile(){
     return(
@@ -41,8 +50,9 @@ export default function VendorProfile(){
                         <Text style={[styles.text,styles.subText]}>Views</Text>
                     </View>
                 </View>
+
                 <View style={{marginTop:25}}>
-                    <Text style={[styles.subText,{marginLeft:16,fontSize:16,color:"#52575D",marginBottom:16,borderBottomColor:"black",borderBottomWidth:0.2}]}>Most viewed</Text>
+                    <Text style={[styles.subText,{marginLeft:20,fontSize:16,color:"#52575D",marginBottom:16,borderBottomColor:"black",borderBottomWidth:0.2}]}>Most viewed</Text>
                     <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
                         <View style={styles.mediaImageContainer}>
                             <Image resizeMode="cover" style={styles.image} source={{uri:"https://media-cdn.tripadvisor.com/media/photo-s/06/0f/1a/fc/bombay-express.jpg"}}></Image>
@@ -56,16 +66,26 @@ export default function VendorProfile(){
                        
                     </ScrollView>
                 </View>
-                
-                <Text style={[styles.subText,styles.recent]}>Recent Videos</Text>
-                <View style={{alignSelf:"center"}}>
-                    <View style={styles.recentItem}>
-                        <View style={styles.recentItemIndicator}></View>
-                        <View style={{width:250}}>
-                            <Text style={styles.text}>S</Text>
+            
+                <Text style={[styles.subText,{marginLeft:20,fontSize:16,color:"#52575D",marginTop:16,borderBottomColor:"black",borderBottomWidth:0.2}]}>All Videos</Text>
+                {images.map(image=>(
+                <View key={image.id} style={styles.imageConatiner}>
+                    
+                    <ImageBackground source={{uri:image.uri}} style={{flex:1,height:400,borderRadius:10,borderWidth:0.2,elevation:10}}
+                        imageStyle={{borderRadius:10}}
+                    >
+                        <View style={styles.detailsContainer}>
+                            <Text style={styles.title}>Dish Name with some description..</Text>
+                            <Text style={styles.subtitle}>Vendor_Name </Text>
+                            <View style={{flexDirection:"row",alignItems:"flex-start"}}>
+                                <Text style={styles.views}>108k views </Text>
+                                <Text style={styles.location}>View location</Text>
+                            </View>
+                            
                         </View>
-                    </View>
+                    </ImageBackground>
                 </View>
+            ))}
             </ScrollView>
         </SafeAreaView>
     )
@@ -133,7 +153,40 @@ const styles = StyleSheet.create({
         height:210,
         borderRadius:12,
         overflow:"hidden",
-        marginHorizontal:10,
+        
+        marginLeft:20
+    },
+
+    imageConatiner:{
+        height:400,
+        margin:20,
+    },
+    detailsContainer:{
+        flex:1,
+        display:'flex',
+        flexDirection:"column",
+        alignItems:"flex-start",
+        justifyContent:"flex-end",
+        padding:10
+    },
+    title:{
+        fontSize:18,
+        fontWeight:"bold",
+        color:Color.main_color,
+    },
+    subtitle:{
+        fontWeight:"bold",
+        color:Color.main_color,
+    },
+    views:{
+        fontWeight:"bold",
+        color:Color.main_color,
+    },
+    location:{
+        fontWeight:"bold",
+        color:"green",
+        paddingLeft:"45%"
     }
+
     
 });

@@ -95,23 +95,14 @@ const styles=StyleSheet.create({
         fontSize:18,
         fontWeight:"bold",
         color:Color.secondary_color,
-        textShadowColor:"black",
-        textShadowOffset:{width: 10, height: 10},
-        textShadowRadius:150,
     },
     subtitle:{
         fontWeight:"bold",
         color:Color.secondary_color,
-        textShadowColor:"black",
-        textShadowOffset:{width: 10, height: 10},
-        textShadowRadius:100,
     },
     views:{
         fontWeight:"bold",
         color:Color.secondary_color,
-        textShadowColor:"black",
-        textShadowOffset:{width: 10, height: 10},
-        textShadowRadius:100,
     },
     location:{
         fontWeight:"bold",
