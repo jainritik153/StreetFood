@@ -43,7 +43,7 @@ const TabNavigator=createBottomTabNavigator({
     }
   },
   Profile:{
-    screen:VendorProfile,
+    screen:TrendingCategroy,
     navigationOptions:{
       tabBarLabel:"Profile",
       tabBarIcon:({tintColor})=>(

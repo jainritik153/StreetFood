@@ -1,9 +1,12 @@
-import React from 'react'
-import {StyleSheet ,Text ,View,ScrollView,Image,Platform,StatusBar, ImageBackground} from 'react-native'
+import React, { useState } from 'react'
+import {StyleSheet ,Text ,View,ScrollView,Image,Platform,StatusBar, ImageBackground, Modal} from 'react-native'
 import Color from '../assets/color'
 import Header from './header'
 import Search from './Search'
 import Animated from 'react-native-reanimated'
+import {Ionicons , MaterialIcons} from 'react-native-vector-icons'
+import VideoDetails from './VideoDetailsModal'
+import { reloadFromCache } from 'expo/build/Updates/Updates'
 
 const images=[
     {id:1,uri:'https://naaniz.com/wp-content/uploads/2018/11/Vada-Pav.jpg'},
@@ -15,7 +18,15 @@ const images=[
 
 const HEADER_HEIGHT=Platform.OS=='ios'?115:60+StatusBar.currentHeight
 
+const handlePress=(uri)=>{
+
+}
+
 export default function TrendingCategory( ){
+
+    const [modalOpen,setModalOpen] =useState(false)  //react hooks with modalOpen VArible eith deafult value as false
+    const [imageuri,setImageuri] =useState("")
+
     const scrollY=new Animated.Value(0);
     const diffClampScrollY=Animated.diffClamp(scrollY,0,HEADER_HEIGHT)
     const headerY = Animated.interpolate(diffClampScrollY,{
@@ -24,6 +35,11 @@ export default function TrendingCategory( ){
     })
     return(
         <View style={styles.container}>
+            
+            <Modal visible={modalOpen} animationType="slide">
+                <VideoDetails setModal={setModalOpen} setImage={setImageuri}></VideoDetails>
+            </Modal>
+
             <Animated.View style={{
                 position:"absolute",
                 left:0,
@@ -56,7 +72,7 @@ export default function TrendingCategory( ){
                         imageStyle={{borderRadius:10}}
                     >
                         <View style={styles.detailsContainer}>
-                            <Text style={styles.title}>Dish Name with some description..</Text>
+                            <Text style={styles.title} onPress={()=>{setImageuri(image.uri) ;setModalOpen(true)}}>Dish Name with some description..</Text>
                             <Text style={styles.subtitle}>Vendor_Name </Text>
                             <View style={{flexDirection:"row",alignItems:"flex-start"}}>
                                 <Text style={styles.views}>108k views </Text>
@@ -108,5 +124,13 @@ const styles=StyleSheet.create({
         fontWeight:"bold",
         color:"green",
         paddingLeft:"45%"
+    },
+    titleBar:{
+        flexDirection:"row",
+        alignItems:"center",
+        justifyContent:"space-between",
+        marginTop:24,
+        marginHorizontal:16
     }
 })
+

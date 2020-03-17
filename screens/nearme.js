@@ -15,7 +15,7 @@ import Color from '../assets/color'
 class NearMe extends React.Component{
     render(){
         return(
-            <View style={{flex:1,backgroundColor:Color.screen_bg_color}}>
+            <View style={{flex:1,backgroundColor:"white"}}>
                 <Header>
                     <LocationHeader/>     
                 </Header>
