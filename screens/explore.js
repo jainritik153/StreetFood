@@ -1,7 +1,7 @@
 import React from 'react'
 import {View,  Text,StyleSheet, ColorPropType} from 'react-native';
 import Color from '../assets/color'
-import Header from '../components/header'
+import Header from '../components/HeaderComponent/header'
 import Search from '../components/Search'
 import ExploreView from '../components/exploreView'
 

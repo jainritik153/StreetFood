@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import {StyleSheet ,Text ,View,ScrollView,Image,Platform,StatusBar, ImageBackground, Modal} from 'react-native'
 import Color from '../assets/color'
-import Header from './header'
+import Header from './HeaderComponent/header'
 import Search from './Search'
 import Animated from 'react-native-reanimated'
 import {Ionicons , MaterialIcons} from 'react-native-vector-icons'

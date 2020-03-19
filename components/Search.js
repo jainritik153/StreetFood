@@ -25,17 +25,16 @@ export default class Search extends React.Component{
 
 const styles=StyleSheet.create({
     container:{
-        flex:1,
+        marginTop:45,
         flexDirection:'row',
         alignItems:"center",
         justifyContent:"center",
         borderWidth:1,
-        marginVertical:5,
         borderColor:Color.screen_bg_color,
-        elevation:25,
+        elevation:5,
         padding:8,
         borderRadius:25,
-        marginHorizontal:2,
+        marginHorizontal:15,
         backgroundColor:"white"
     },
     icon:{

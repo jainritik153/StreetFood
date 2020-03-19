@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
-import Header from "../components/header";
+import Header from "../components/HeaderComponent/header";
 import Color from "../assets/color";
 import TrendingCard from "../components/trendingCard";
 import Search from '../components/Search'

@@ -56,12 +56,13 @@ const TabNavigator=createBottomTabNavigator({
 },
 {
   tabBarOptions:{
-    activeTintColor:"black",
-    inactiveTintColor:'grey',
+    activeTintColor:Color.theme_color,
+    inactiveTintColor:'black',
     style:{
       backgroundColor:Color.screen_bg_color,
       borderTopWidth:0,
       elevation:5,
+    
     }
   }
 })

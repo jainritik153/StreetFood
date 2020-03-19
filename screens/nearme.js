@@ -7,31 +7,31 @@ import {View,
     ColorPropType,
     ScrollView} from 'react-native';
 
-import Header from '../components/header'
-import LocationHeader from '../components/locationHeader'
-import Card from '../components/card'
+import Header from '../components/HeaderComponent/header'
+import LocationHeader from '../components/HeaderComponent/locationHeader'
+import Card from '../components/NearmeCardComponent/card'
 import Color from '../assets/color'
+import Icon from 'react-native-vector-icons/Ionicons'
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
+import Foundation from 'react-native-vector-icons/Foundation'
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import NotificationHeader from '../components/HeaderComponent/notificatioHeader'
 
 class NearMe extends React.Component{
     render(){
         return(
             <View style={{flex:1,backgroundColor:"white"}}>
                 <Header>
-                    <LocationHeader/>     
+                   <NotificationHeader/>
+                   <LocationHeader/>
                 </Header>
-                <ScrollView>
-                   <Card  header={"Vendor_name"} img={"https://im.rediff.com/getahead/2017/mar/28foodies5.jpg"} footer={"Likes:100"}></Card>
-                   <Card header={"Vendor_name"} img={"https://im.rediff.com/getahead/2017/mar/28foodies5.jpg"} footer={"Likes:100"} ></Card>
-                   <Text style={{fontSize:17,fontWeight:"bold"}}
-                    >
-                        Recommendations for you 
-                    </Text>
-
-
-                   <Card header={"Vendor_name"} img={"https://im.rediff.com/getahead/2017/mar/28foodies5.jpg"} footer={"Likes:100"} ></Card>
-                   <Card header={"Vendor_name"} img={"https://im.rediff.com/getahead/2017/mar/28foodies5.jpg"} footer={"Likes:100"} ></Card>
-                   <Card  header={"Vendor_name"} img={"https://im.rediff.com/getahead/2017/mar/28foodies5.jpg"} footer={"Likes:100"}></Card>
-                   <Card  header={"Vendor_name"} img={"https://im.rediff.com/getahead/2017/mar/28foodies5.jpg"} footer={"Likes:100"}></Card>
+                <ScrollView >
+                   <Card ></Card>
+                   <Card ></Card>
+                   <Card ></Card>
+                   <Card ></Card>
+                   <Card></Card>
+                   <Card></Card>
                 </ScrollView>
     
             </View>
@@ -42,7 +42,7 @@ class NearMe extends React.Component{
 }
 
 const styles=StyleSheet.create({
-    
+ 
 })
 
 export default NearMe;
