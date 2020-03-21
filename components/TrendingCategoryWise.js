@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import {StyleSheet ,Text ,View,ScrollView,Image,Platform,StatusBar, ImageBackground, Modal} from 'react-native'
+import {StyleSheet ,Text ,View,ScrollView,Image,Platform,StatusBar, ImageBackground, Modal,Dimensions} from 'react-native'
 import Color from '../assets/color'
 import Header from './HeaderComponent/header'
 import Search from './Search'
@@ -7,11 +7,15 @@ import Animated from 'react-native-reanimated'
 import {Ionicons , MaterialIcons} from 'react-native-vector-icons'
 import VideoDetails from './VideoDetailsModal'
 import { reloadFromCache } from 'expo/build/Updates/Updates'
+import { TouchableOpacity } from 'react-native-gesture-handler';
+
+
+const {width,height} =Dimensions.get('screen');
 
 const images=[
     {id:1,uri:'https://naaniz.com/wp-content/uploads/2018/11/Vada-Pav.jpg'},
-    {id:2,uri:'https://2.bp.blogspot.com/-ITLoxRGnovY/T1yYrahoxcI/AAAAAAAACvE/YkO0RTXQktE/s1600/pani+puri-+main.jpg'},
-    {id:3,uri:'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcREg7HvkWcJTqwRU_579rLSLHnXzjZpqYFUlXQEOJfQCFM0qKQt'},
+    {id:2,uri:'https://i.pinimg.com/originals/d4/d4/ee/d4d4ee8b3f45e22fa9306a1255c76d5c.jpg'},
+    {id:3,uri:'https://im.rediff.com/getahead/2017/mar/28foodies5.jpg'},
     {id:4,uri:'https://photos.smugmug.com/Mumbai/i-qGMtZHZ/0/X3/bhelpuri-1-X3.jpg'},
     {id:5,uri:'https://i.ytimg.com/vi/UVnM1WiK3_I/maxresdefault.jpg'},
 ]
@@ -39,7 +43,7 @@ export default function TrendingCategory( ){
             <Modal visible={modalOpen} animationType="slide">
                 <VideoDetails setModal={setModalOpen} setImage={setImageuri}></VideoDetails>
             </Modal>
-
+                
             <Animated.View style={{
                 position:"absolute",
                 left:0,
@@ -58,6 +62,11 @@ export default function TrendingCategory( ){
             </Animated.View>
        
         <Animated.ScrollView
+            scrollEnabled
+            showsHorizontalScrollIndicator={false}
+            snapToAlignment="center"
+            pagingEnabled
+            horizontal={true}
             scrollEventThrottle={16}
             style={{paddingTop:HEADER_HEIGHT}}
             onScroll={Animated.event([
@@ -68,9 +77,26 @@ export default function TrendingCategory( ){
         >
             {images.map(image=>(
                 <View key={image.id} style={styles.imageConatiner}>
-                    <ImageBackground source={{uri:image.uri}} style={{flex:1,height:400,borderRadius:10,borderWidth:0.2,elevation:10}}
+                    <ImageBackground source={{uri:image.uri}} style={{flex:1,height:undefined,width:undefined,elevation:10}}
                         imageStyle={{borderRadius:10}}
                     >
+                        <View style={styles.cardHeaderContainer}>
+                            <View style={styles.profileImage}>
+                                <Image source={{uri:"https://i.pinimg.com/originals/d4/d4/ee/d4d4ee8b3f45e22fa9306a1255c76d5c.jpg "}} style={styles.image}></Image>
+                            </View>
+                            <View style={{flex:1,flexDirection:"column"}}>
+                                <Text style={{color:Color.main_color,marginTop:5,fontSize:15,fontWeight:"bold"}}>Ritik Jain
+                                </Text>
+                                <Text style={{fontSize:11,color:Color.main_color}}>1,162 followers</Text>
+                                <Text style={{fontSize:11,color:Color.main_color,fontStyle:"italic"}}>Mira-Bhhayandar</Text>
+                            </View>
+                            <View style={{flex:1,flexDirection:"row"}}>
+                                <TouchableOpacity>
+                                    <Text style={{alignSelf:"center",marginTop:25,marginLeft:70,fontSize:15,fontWeight:"bold",color:Color.theme_color}}>+ Follow</Text>
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+
                         <View style={styles.detailsContainer}>
                             <Text style={styles.title} onPress={()=>{setImageuri(image.uri) ;setModalOpen(true)}}>Dish Name with some description..</Text>
                             <Text style={styles.subtitle}>Vendor_Name </Text>
@@ -93,37 +119,47 @@ export default function TrendingCategory( ){
 const styles=StyleSheet.create({
     container:{
         flex:1,
-       
+    
     },
     imageConatiner:{
-        height:400,
-        margin:20,
+        //flex:1,
+        marginTop:10,
+       //height:450,
+        margin:15,
+        width:width-30,
+        borderRadius:10,
+        flexWrap:"wrap",
+        overflow:"hidden"
     },
     detailsContainer:{
-        flex:1,
-        display:'flex',
-        flexDirection:"column",
-        alignItems:"flex-start",
-        justifyContent:"flex-end",
-        padding:10
+        padding:5,
+        alignSelf:"center",
+        marginTop:380,
+        backgroundColor: 'rgba(52, 52, 52, 0.6)',
+        borderBottomEndRadius:10,
+       // backgroundColor: 'transparent'
+       borderRadius:10
+       
     },
     title:{
-        fontSize:18,
+        fontSize:15,
         fontWeight:"bold",
-        color:Color.secondary_color,
+        color:Color.main_color,
     },
     subtitle:{
+        fontSize:13,
         fontWeight:"bold",
-        color:Color.secondary_color,
+        color:Color.main_color,
     },
     views:{
+        fontSize:13,
         fontWeight:"bold",
-        color:Color.secondary_color,
+        color:Color.main_color,
     },
     location:{
         fontWeight:"bold",
         color:"green",
-        paddingLeft:"45%"
+        marginLeft:160
     },
     titleBar:{
         flexDirection:"row",
@@ -131,6 +167,27 @@ const styles=StyleSheet.create({
         justifyContent:"space-between",
         marginTop:24,
         marginHorizontal:16
-    }
+    },
+    cardHeaderContainer:{
+        flexDirection:"row",
+        borderBottomColor:"red",
+        borderBottomWidth:0.2,
+        borderRadius:10,
+        backgroundColor:'rgba(52,52,52,0.4)'
+    },
+    profileImage:{
+        margin:8,
+        width:50,
+        height:50,
+        borderRadius:100,
+        overflow:"hidden",
+        borderWidth:0.2,
+        borderColor:"black"
+    },
+    image:{
+        flex:1,
+        width:undefined,
+        height:undefined
+    },
 })
 

@@ -21,8 +21,8 @@ export default class Card extends React.Component{
                     <View style={{flex:1,flexDirection:"column"}}>
                         <Text style={{marginTop:5,fontSize:15,fontWeight:"bold"}}>Ritik Jain
                         </Text>
-                        <Text style={{fontSize:11,color:"green"}}>1,162 followers</Text>
-                        <Text style={{fontSize:11,color:"red",fontStyle:"italic"}}>Mira-Bhhayandar</Text>
+                        <Text style={{fontSize:11,color:"grey"}}>1,162 followers</Text>
+                        <Text style={{fontSize:11,color:"grey",fontStyle:"italic"}}>Mira-Bhhayandar</Text>
                     </View>
                     <View style={{flex:1,flexDirection:"row"}}>
                         <TouchableOpacity>

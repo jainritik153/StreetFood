@@ -25,7 +25,7 @@ export default class Search extends React.Component{
 
 const styles=StyleSheet.create({
     container:{
-        marginTop:45,
+        //marginTop:45,
         flexDirection:'row',
         alignItems:"center",
         justifyContent:"center",

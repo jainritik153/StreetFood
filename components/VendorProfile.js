@@ -1,16 +1,17 @@
 import React from "react";
-import { View, Text, StyleSheet, ScrollView ,SafeAreaView,Image,ImageBackground} from "react-native";
+import { View, Text, StyleSheet, ScrollView ,SafeAreaView,Image,ImageBackground,StatusBar} from "react-native";
 import {Ionicons , MaterialIcons} from 'react-native-vector-icons'
 import Color from "../assets/color";
 import color from "../assets/color";
 
+const HEADER_HEIGHT=Platform.OS=='ios'?115:60+StatusBar.currentHeight
 
 const images=[
-    {id:1,uri:'https://media-cdn.tripadvisor.com/media/photo-s/06/0f/1a/fc/bombay-express.jpg'},
-    {id:2,uri:'https://media-cdn.tripadvisor.com/media/photo-s/06/0f/1a/fc/bombay-express.jpg'},
-    {id:3,uri:'https://media-cdn.tripadvisor.com/media/photo-s/06/0f/1a/fc/bombay-express.jpg'},
-    {id:4,uri:'https://media-cdn.tripadvisor.com/media/photo-s/06/0f/1a/fc/bombay-express.jpg'},
-    {id:5,uri:'https://media-cdn.tripadvisor.com/media/photo-s/06/0f/1a/fc/bombay-express.jpg'},
+    {id:1,uri:'https://naaniz.com/wp-content/uploads/2018/11/Vada-Pav.jpg'},
+    {id:2,uri:'https://naaniz.com/wp-content/uploads/2018/11/Vada-Pav.jpg'},
+    {id:3,uri:'https://naaniz.com/wp-content/uploads/2018/11/Vada-Pav.jpg'},
+    {id:4,uri:'https://naaniz.com/wp-content/uploads/2018/11/Vada-Pav.jpg'},
+    {id:5,uri:'https://naaniz.com/wp-content/uploads/2018/11/Vada-Pav.jpg'},
 ]
 
 export default function VendorProfile(){
@@ -32,7 +33,7 @@ export default function VendorProfile(){
                 </View>
 
                 <View style={styles.infoContainer}>
-                    <Text style={[styles.text,{fontWeight:"200" , fontSize:36}]}>Manjit Station</Text>
+                    <Text style={[styles.text,{fontWeight:"200" , fontSize:30}]}>Manjit Station</Text>
                     <Text style={[styles.text,{color:"AEB5BC" ,fontSize:14}]}>No.1 Chaat Station</Text>
                 </View>
 
@@ -51,23 +52,23 @@ export default function VendorProfile(){
                     </View>
                 </View>
 
-                <View style={{marginTop:25}}>
-                    <Text style={[styles.subText,{marginLeft:20,fontSize:16,color:"#52575D",marginBottom:16,borderBottomColor:"black",borderBottomWidth:0.2}]}>Most viewed</Text>
+                <View style={{marginTop:10}}>
+                    <Text style={[styles.subText,{marginLeft:15,fontSize:13,color:"#52575D",marginBottom:10,borderBottomColor:"black",borderBottomWidth:0.2}]}>Most viewed</Text>
                     <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
                         <View style={styles.mediaImageContainer}>
-                            <Image resizeMode="cover" style={styles.image} source={{uri:"https://media-cdn.tripadvisor.com/media/photo-s/06/0f/1a/fc/bombay-express.jpg"}}></Image>
+                            <ImageBackground resizeMode="cover" style={styles.image} source={{uri:"https://naaniz.com/wp-content/uploads/2018/11/Vada-Pav.jpg"}}></ImageBackground>
                         </View>                       
                         <View style={styles.mediaImageContainer}>
-                            <Image resizeMode="cover" style={styles.image} source={{uri:"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRvQprLw2cmhLl2VoB3cGs08NXBFYoL0KHdX4HlFQDl_Vofu1mT"}}></Image>
+                            <Image resizeMode="cover" style={styles.image} source={{uri:"https://naaniz.com/wp-content/uploads/2018/11/Vada-Pav.jpg"}}></Image>
                         </View>
                         <View style={styles.mediaImageContainer}>
-                            <Image resizeMode="cover" style={styles.image} source={{uri:"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS91XlOMvLWTpmM7r_lXIGhn6WruPK05RGs5QgufXi53p_Sb10m"}}></Image>
+                            <Image resizeMode="cover" style={styles.image} source={{uri:"https://naaniz.com/wp-content/uploads/2018/11/Vada-Pav.jpg"}}></Image>
                         </View>
                        
                     </ScrollView>
                 </View>
             
-                <Text style={[styles.subText,{marginLeft:20,fontSize:16,color:"#52575D",marginTop:16,borderBottomColor:"black",borderBottomWidth:0.2}]}>All Videos</Text>
+                <Text style={[styles.subText,{marginLeft:15,fontSize:13,color:"#52575D",marginTop:16,borderBottomColor:"black",borderBottomWidth:0.2}]}>All Videos</Text>
                 {images.map(image=>(
                 <View key={image.id} style={styles.imageConatiner}>
                     
@@ -109,18 +110,18 @@ const styles = StyleSheet.create({
     image:{
         flex:1,
         width:undefined,
-        height:undefined
+        height:undefined,
     },
     titleBar:{
         flexDirection:"row",
         alignItems:"center",
         justifyContent:"space-between",
-        marginTop:24,
+        marginTop:30,
         marginHorizontal:16
     },
     profileImage:{
-        width:200,
-        height:200,
+        width:150,
+        height:150,
         borderRadius:100,
         overflow:"hidden"
     },
@@ -137,12 +138,12 @@ const styles = StyleSheet.create({
     infoContainer:{
         alignSelf:"center",
         alignItems:"center",
-        marginTop:16
+        marginTop:1
     },
     statsContainer:{
         flexDirection:"row",
         alignSelf:"center",
-        marginTop:32,
+        marginTop:15,
     },
     statusBox:{
         alignItems:"center",
@@ -154,31 +155,33 @@ const styles = StyleSheet.create({
         borderRadius:12,
         overflow:"hidden",
         
-        marginLeft:20
+        marginLeft:10
     },
 
     imageConatiner:{
+        elevation:100,
         height:400,
-        margin:20,
+        margin:12,
     },
     detailsContainer:{
-        flex:1,
-        display:'flex',
-        flexDirection:"column",
-        alignItems:"flex-start",
+        borderRadius:10,
+        marginTop:333,
         justifyContent:"flex-end",
-        padding:10
+        padding:5,
+        backgroundColor:'rgba(52,52,52,0.6)'
     },
     title:{
-        fontSize:18,
+        fontSize:15,
         fontWeight:"bold",
         color:Color.main_color,
     },
     subtitle:{
+        fontSize:13,
         fontWeight:"bold",
         color:Color.main_color,
     },
     views:{
+        fontSize:13,
         fontWeight:"bold",
         color:Color.main_color,
     },
