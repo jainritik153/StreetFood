@@ -5,7 +5,6 @@ import Header from '../components/HeaderComponent/header'
 import Search from '../components/Search'
 import ExploreView from '../components/exploreView'
 import Icon from 'react-native-vector-icons/Ionicons'
-import CategoryList from '../components/ExploreComponent/categoryList'
 import { ScrollView } from 'react-native-gesture-handler';
 
 const HEADER_HEIGHT= StatusBar.currentHeight
