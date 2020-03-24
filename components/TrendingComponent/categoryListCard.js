@@ -18,10 +18,7 @@ export default class CategoryListCard extends React.Component {
                   <Text style={styles.text}>
                       {this.props.category}
                   </Text>
-                  <Button  type="outline"  buttonStyle={{width:320,height:40}}>
-                      <Text style={styles.text}>
-                        See Videos
-                      </Text>
+                  <Button title="Show Video" type="outline"  buttonStyle={{width:320,height:40,backgroundColor:'rgba(52,52,52,0.2)'}}>
                   </Button>
               </View>
                   

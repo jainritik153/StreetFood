@@ -80,7 +80,7 @@ export default function TrendingVideoScreen( ){
                                 <Image  source={{uri:"https://i.pinimg.com/originals/d4/d4/ee/d4d4ee8b3f45e22fa9306a1255c76d5c.jpg "}} style={styles.image}></Image>
                             </View>
                             <View style={{flex:1,flexDirection:"column"}}>
-                                <Text style={{color:Color.main_color,marginTop:5,fontSize:15,fontWeight:"bold"}}>Ritik Jain
+                                <Text style={{color:Color.main_color,marginTop:5,fontSize:15,fontWeight:"bold"}}>Vendor Name
                                 </Text>
                                 <Text style={{fontSize:11,color:Color.main_color}}>1,162 followers</Text>
                                 <Text style={{fontSize:11,color:Color.main_color,fontStyle:"italic"}}>Mira-Bhhayandar</Text>
@@ -94,10 +94,10 @@ export default function TrendingVideoScreen( ){
 
                         <View style={styles.detailsContainer}>
                             <Text style={styles.title} >Dish Name with some description..</Text>
-                            <Text style={styles.subtitle}>Vendor_Name </Text>
+                            <Text style={styles.subtitle}>location</Text>
                             <View style={{flexDirection:"row",alignItems:"flex-start"}}>
                                 <Text style={styles.views}>108k views </Text>
-                                <Text style={styles.location}>View location</Text>
+            
                             </View>
                             
                         </View>
@@ -123,7 +123,7 @@ const styles=StyleSheet.create({
         margin:15,
         width:width-30,
         borderRadius:10,
-        flexWrap:"wrap",
+       
         overflow:"hidden"
     },
     detailsContainer:{
@@ -132,6 +132,7 @@ const styles=StyleSheet.create({
         marginTop:380,
         backgroundColor: 'rgba(52, 52, 52, 0.6)',
         borderBottomEndRadius:10,
+        width:width-30,
        // backgroundColor: 'transparent'
        borderRadius:10
        

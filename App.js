@@ -15,6 +15,7 @@ import Review from './components/ReviewComponent/review'
 import Comment from './components/CommentComponent/comment'
 import VideoDetails from './screens/VideoDetailsScreen'
 import SignUpScreen from './screens/SignUpScreen'
+import UserProfile from './screens/userProfileScreen'
 
 
 const TabNavigator=createBottomTabNavigator({
@@ -46,7 +47,7 @@ const TabNavigator=createBottomTabNavigator({
     }
   },
   Profile:{
-    screen:SignInScreen,
+    screen:TrendingVideoScreen,
     navigationOptions:{
       tabBarLabel:"Profile",
       tabBarIcon:({tintColor})=>(
