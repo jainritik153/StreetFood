@@ -5,12 +5,16 @@ import {createBottomTabNavigator} from 'react-navigation-tabs';
 import NearMe from './screens/nearme'
 import Explore from './screens/explore'
 import Trending from './screens/trending'
-import Profile from './screens/Profile'
+import SignInScreen from './screens/SignInScreen'
 import Icon from 'react-native-vector-icons/Ionicons'
 import Color from './assets/color'
 import {NavigationContainer, } from 'react-navigation'
 import TrendingVideoScreen from './screens/trendingVideoScreen'
 import VendorProfileScreen from './screens/vendorProfileScreen'
+import Review from './components/ReviewComponent/review'
+import Comment from './components/CommentComponent/comment'
+import VideoDetails from './screens/VideoDetailsScreen'
+import SignUpScreen from './screens/SignUpScreen'
 
 
 const TabNavigator=createBottomTabNavigator({
@@ -42,7 +46,7 @@ const TabNavigator=createBottomTabNavigator({
     }
   },
   Profile:{
-    screen:TrendingVideoScreen,
+    screen:SignInScreen,
     navigationOptions:{
       tabBarLabel:"Profile",
       tabBarIcon:({tintColor})=>(

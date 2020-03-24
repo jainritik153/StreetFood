@@ -15,7 +15,7 @@ import {
   ColorPropType
 } from "react-native";
 
-export default class Profile extends Component {
+export default class SignIn extends Component {
   render() {
     return (
       <SafeAreaView style={styles.container}>
