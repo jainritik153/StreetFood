@@ -4,43 +4,31 @@ import Header from "../components/HeaderComponent/header";
 import Color from "../assets/color";
 import Search from "../components/Search";
 import CategoryListCard from "../components/TrendingComponent/categoryListCard";
+import trendingScreen from "./trendingScreen";
+import trendingVideoScreen from "./trendingVideoScreen";
+import vendorProfileScreen from "./vendorProfileScreen";
+
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+
+const Stack = createStackNavigator();
 
 //trending class component is changed to functional component
 function Trending() {
   return (
-    <View style={{ flex: 1, backgroundColor: Color.screen_bg_color }}>
-      <ScrollView style={styles.scrollview}>
-        <View style={styles.heading}>
-          <Text style={{ color: "black", fontWeight: "bold", fontSize: 25 }}>
-            CATEGORIES
-          </Text>
-        </View>
-        <CategoryListCard
-          category="Chinese"
-          url={
-            "https://images.unsplash.com/photo-1557682224-5b8590cd9ec5?ixlib=rb-1.2.1&w=1000&q=80"
-          }
-        ></CategoryListCard>
-        <CategoryListCard
-          category="South Indian"
-          url={
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSyLLFqbRDmD-imxGBvcu2d4o8p48Tqr9HJC0CYQ5fECifd6NXB"
-          }
-        ></CategoryListCard>
-        <CategoryListCard
-          category="Italian"
-          url={
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1c79rHRO3f_EMA-Uw-pWFge_iXxjpsB0Mil2rDsolzB9V8j7p"
-          }
-        ></CategoryListCard>
-        <CategoryListCard
-          category="Mexican"
-          url={
-            "https://vanseodesign.com/blog/wp-content/uploads/2012/11/linear-gradient.png"
-          }
-        ></CategoryListCard>
-      </ScrollView>
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="trendingScreen" component={trendingScreen} />
+        <Stack.Screen
+          name="trendingVideoScreen"
+          component={trendingVideoScreen}
+        />
+        <Stack.Screen
+          name="vendorProfileScreen"
+          component={vendorProfileScreen}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 

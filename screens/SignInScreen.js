@@ -1,5 +1,6 @@
 import Color from "../assets/color";
 import React, { Component } from "react";
+import { TouchableOpacity } from "react-native-gesture-handler";
 import {
   StyleSheet,
   Text,
@@ -11,11 +12,12 @@ import {
   SafeAreaView,
   Keyboard,
   KeyboardAvoidingView,
-  TouchableOpacity,
-  ColorPropType
+  ColorPropType,
+  Button
 } from "react-native";
+import signUpScreen from "./SignUpScreen";
 
-export default class SignIn extends Component {
+export default class SignInScreen extends Component {
   render() {
     return (
       <SafeAreaView style={styles.container}>
@@ -45,10 +47,13 @@ export default class SignIn extends Component {
                   style={styles.input}
                 ></TextInput>
                 <TouchableOpacity style={styles.buttonContainer}>
-                  <Text style={styles.textButton}>SIGN IN</Text>
+                  <Button style={styles.textButton} title="Sign In" />
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.linkForSignUp}>
-                  <Text style={styles.textLink}>Register Me</Text>
+                <TouchableOpacity
+                  style={styles.buttonContainer}
+                  onPress={() => this.props.navigation.navigate("signUpScreen")}
+                >
+                  <Button style={styles.textButton} title="Sign Up" />
                 </TouchableOpacity>
               </View>
             </View>
@@ -71,7 +76,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    bottom: 10
+    bottom: 50
   },
   logo: {},
   title: {
@@ -93,13 +98,12 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(255,255,255,0.2)",
     marginBottom: 20,
     paddingHorizontal: 10,
-    borderColor:"black",
-    borderWidth:0.2
+    borderColor: "black",
+    borderWidth: 0.2
   },
   buttonContainer: {
     backgroundColor: Color.main_color,
-    marginBottom: 10,
-    paddingVertical: 5
+    marginBottom: 20
   },
 
   textButton: {
@@ -109,8 +113,7 @@ const styles = StyleSheet.create({
   },
   linkForSignUp: {
     fontSize: 18,
-    textAlign: "center",
-    marginTop: 5
+    textAlign: "center"
   },
   textLink: {
     fontSize: 15,
