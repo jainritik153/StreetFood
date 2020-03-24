@@ -1,12 +1,8 @@
 import React, { useState } from 'react'
 import {StyleSheet ,Text ,View,ScrollView,Image,Platform,StatusBar, ImageBackground, Modal,Dimensions} from 'react-native'
 import Color from '../assets/color'
-import Header from './HeaderComponent/header'
-import Search from './Search'
+import Search from '../components/Search'
 import Animated from 'react-native-reanimated'
-import {Ionicons , MaterialIcons} from 'react-native-vector-icons'
-import VideoDetails from './VideoDetailsModal'
-import { reloadFromCache } from 'expo/build/Updates/Updates'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
@@ -26,10 +22,10 @@ const handlePress=(uri)=>{
 
 }
 
-export default function TrendingCategory( ){
+export default function TrendingVideoScreen( ){
 
-    const [modalOpen,setModalOpen] =useState(false)  //react hooks with modalOpen VArible eith deafult value as false
-    const [imageuri,setImageuri] =useState("")
+   // const [modalOpen,setModalOpen] =useState(false)  //react hooks with modalOpen VArible eith deafult value as false
+   // const [imageuri,setImageuri] =useState("")
 
     const scrollY=new Animated.Value(0);
     const diffClampScrollY=Animated.diffClamp(scrollY,0,HEADER_HEIGHT)
@@ -39,11 +35,6 @@ export default function TrendingCategory( ){
     })
     return(
         <View style={styles.container}>
-            
-            <Modal visible={modalOpen} animationType="slide">
-                <VideoDetails setModal={setModalOpen} setImage={setImageuri}></VideoDetails>
-            </Modal>
-                
             <Animated.View style={{
                 position:"absolute",
                 left:0,
@@ -54,11 +45,15 @@ export default function TrendingCategory( ){
                 zIndex:1000,
                 elevation:1000,
                 transform:[{translateY:headerY}],
-                alignItems:"center",
+                alignItems:"flex-start",
                 justifyContent:"center",
                 paddingTop:35
             }}> 
-                <Search></Search>
+            <View style={styles.heading}>
+              <Text style={{color:"black",fontWeight:"bold",fontSize:25}}>
+                TRENDING VIDEOS
+              </Text>
+            </View>
             </Animated.View>
        
         <Animated.ScrollView
@@ -77,12 +72,12 @@ export default function TrendingCategory( ){
         >
             {images.map(image=>(
                 <View key={image.id} style={styles.imageConatiner}>
-                    <ImageBackground source={{uri:image.uri}} style={{flex:1,height:undefined,width:undefined,elevation:10}}
+                    <ImageBackground resizeMode="cover" source={{uri:image.uri}} style={{flex:1,height:undefined,width:undefined,elevation:10}}
                         imageStyle={{borderRadius:10}}
                     >
                         <View style={styles.cardHeaderContainer}>
                             <View style={styles.profileImage}>
-                                <Image source={{uri:"https://i.pinimg.com/originals/d4/d4/ee/d4d4ee8b3f45e22fa9306a1255c76d5c.jpg "}} style={styles.image}></Image>
+                                <Image  source={{uri:"https://i.pinimg.com/originals/d4/d4/ee/d4d4ee8b3f45e22fa9306a1255c76d5c.jpg "}} style={styles.image}></Image>
                             </View>
                             <View style={{flex:1,flexDirection:"column"}}>
                                 <Text style={{color:Color.main_color,marginTop:5,fontSize:15,fontWeight:"bold"}}>Ritik Jain
@@ -98,7 +93,7 @@ export default function TrendingCategory( ){
                         </View>
 
                         <View style={styles.detailsContainer}>
-                            <Text style={styles.title} onPress={()=>{setImageuri(image.uri) ;setModalOpen(true)}}>Dish Name with some description..</Text>
+                            <Text style={styles.title} >Dish Name with some description..</Text>
                             <Text style={styles.subtitle}>Vendor_Name </Text>
                             <View style={{flexDirection:"row",alignItems:"flex-start"}}>
                                 <Text style={styles.views}>108k views </Text>
@@ -189,5 +184,14 @@ const styles=StyleSheet.create({
         width:undefined,
         height:undefined
     },
+    heading:{
+        alignItems:"flex-start",
+        margin:5,
+        padding:10,
+        borderBottomColor:"black",
+        borderBottomWidth:0.2,
+        marginBottom:20,
+     
+      }
 })
 

@@ -1,10 +1,9 @@
 import React from "react";
 import { View, Text, StyleSheet, ImageBackground} from "react-native";
 import {Button} from 'react-native-elements'
-import Color from "../assets/color";
-import color from "../assets/color";
 
-export default class TrendingCardVideo extends React.Component {
+
+export default class CategoryListCard extends React.Component {
   constructor(props) {
     super(props);
   }

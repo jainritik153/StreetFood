@@ -19,7 +19,7 @@ export default class Card extends React.Component{
                             <Image source={{uri:"https://i.pinimg.com/originals/d4/d4/ee/d4d4ee8b3f45e22fa9306a1255c76d5c.jpg "}} style={styles.image}></Image>
                     </View>
                     <View style={{flex:1,flexDirection:"column"}}>
-                        <Text style={{marginTop:5,fontSize:15,fontWeight:"bold"}}>Ritik Jain
+                        <Text style={{marginTop:5,fontSize:15,fontWeight:"bold"} }>Vendor_name
                         </Text>
                         <Text style={{fontSize:11,color:"grey"}}>1,162 followers</Text>
                         <Text style={{fontSize:11,color:"grey",fontStyle:"italic"}}>Mira-Bhhayandar</Text>

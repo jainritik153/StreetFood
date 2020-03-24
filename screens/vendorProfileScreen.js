@@ -4,6 +4,7 @@ import {Ionicons , MaterialIcons} from 'react-native-vector-icons'
 import Color from "../assets/color";
 import color from "../assets/color";
 
+
 const HEADER_HEIGHT=Platform.OS=='ios'?115:60+StatusBar.currentHeight
 
 const images=[
@@ -14,7 +15,9 @@ const images=[
     {id:5,uri:'https://naaniz.com/wp-content/uploads/2018/11/Vada-Pav.jpg'},
 ]
 
-export default function VendorProfile(){
+export default function VendorProfileScreen(){
+
+
     return(
         <SafeAreaView style={styles.container}> 
             <ScrollView showsVerticalScrollIndicator={false}>

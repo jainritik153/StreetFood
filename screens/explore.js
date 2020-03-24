@@ -1,11 +1,9 @@
 import React from 'react'
-import {View,  Text,StyleSheet,ImageBackground,Image,StatusBar} from 'react-native';
+import {View,  Text,StyleSheet,ImageBackground,Image,StatusBar,TextInput} from 'react-native';
 import Color from '../assets/color'
-import Header from '../components/HeaderComponent/header'
-import Search from '../components/Search'
-import ExploreView from '../components/exploreView'
 import Icon from 'react-native-vector-icons/Ionicons'
 import { ScrollView } from 'react-native-gesture-handler';
+import { Input } from 'react-native-elements';
 
 const HEADER_HEIGHT= StatusBar.currentHeight
 
@@ -37,7 +35,7 @@ class Explore extends React.Component{
 
                     <View style={styles.searchContainer}>
                         <Icon name='md-search' color="black" size={26} style={{marginLeft:"2%"}}/>
-                        <Text style={{color:"grey",fontSize:18,marginLeft:"4%"}}>Search</Text>
+                        <TextInput autoFocus type="text" style={{color:"grey",fontSize:18,marginLeft:"4%"}} placeholder="Search"></TextInput>
                     </View>
                     <View style={styles.categoryListContainer}>
                         <ScrollView showsHorizontalScrollIndicator={false}  horizontal={true}>
