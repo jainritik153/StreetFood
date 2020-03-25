@@ -12,7 +12,7 @@ export default class LocationHeader extends React.Component{
 
     render(){
         return(
-            <View style={{marginVertical:10,margin:10}}>
+            <View style={{marginVertical:7,margin:10}}>
             <View style={{marginTop:2,flexDirection:"row",alignItems:"center"}}>
                    <MaterialIcons name="location-on" size={16} color="green"></MaterialIcons>
                    <Text style={{marginLeft:2,fontSize:14,fontWeight:"bold"}}>

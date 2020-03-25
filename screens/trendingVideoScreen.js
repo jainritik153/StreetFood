@@ -50,28 +50,6 @@ export default class TrendingVideoScreen extends React.Component {
     });
     return (
       <View style={styles.container}>
-        <Animated.View
-          style={{
-            position: "absolute",
-            left: 0,
-            right: 0,
-            top: 0,
-            height: HEADER_HEIGHT,
-            backgroundColor: Color.screen_bg_color,
-            zIndex: 1000,
-            elevation: 1000,
-            transform: [{ translateY: headerY }],
-            alignItems: "flex-start",
-            justifyContent: "center",
-            paddingTop: 35
-          }}
-        >
-          <View style={styles.heading}>
-            <Text style={{ color: "black", fontWeight: "bold", fontSize: 25 }}>
-              TRENDING VIDEOS
-            </Text>
-          </View>
-        </Animated.View>
 
         <Animated.ScrollView
           scrollEnabled
@@ -80,12 +58,7 @@ export default class TrendingVideoScreen extends React.Component {
           pagingEnabled
           horizontal={true}
           scrollEventThrottle={16}
-          style={{ paddingTop: HEADER_HEIGHT }}
-          onScroll={Animated.event([
-            {
-              nativeEvent: { contentOffset: { y: scrollY } }
-            }
-          ])}
+        
         >
           {images.map(image => (
             <View key={image.id} style={styles.imageConatiner}>
@@ -111,19 +84,22 @@ export default class TrendingVideoScreen extends React.Component {
                     ></Image>
                   </View>
                   <View style={{ flex: 1, flexDirection: "column" }}>
-                    <Text
-                      style={{
-                        color: Color.main_color,
-                        marginTop: 5,
-                        fontSize: 15,
-                        fontWeight: "bold"
-                      }}
-                      onPress={() =>
-                        this.props.navigation.navigate("vendorProfileScreen")
-                      }
-                    >
-                      Vendor Name
-                    </Text>
+                    <TouchableOpacity>
+                      <Text
+                        style={{
+                          color: Color.main_color,
+                          marginTop: 5,
+                          fontSize: 15,
+                          fontWeight: "bold"
+                        }}
+                        onPress={() =>
+                          this.props.navigation.navigate("vendorProfileScreen")
+                        }
+                      >
+                        Vendor Name
+                      </Text>
+                    </TouchableOpacity>
+                    
                     <Text style={{ fontSize: 11, color: Color.main_color }}>
                       1,162 followers
                     </Text>
@@ -156,9 +132,16 @@ export default class TrendingVideoScreen extends React.Component {
                 </View>
 
                 <View style={styles.detailsContainer}>
-                  <Text style={styles.title}>
-                    Dish Name with some description..
-                  </Text>
+                  <TouchableOpacity>
+                    <Text style={styles.title}
+                      onPress={() =>
+                        this.props.navigation.navigate("videoDetails")
+                      }
+                    >
+                      Dish Name with some description..
+                    </Text>
+                  </TouchableOpacity>
+                    
                   <Text style={styles.subtitle}>location</Text>
                   <View
                     style={{ flexDirection: "row", alignItems: "flex-start" }}
@@ -177,17 +160,14 @@ export default class TrendingVideoScreen extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex:1
   },
   imageConatiner: {
     //flex:1,
-    marginTop: 10,
     //height:450,
     margin: 15,
     width: width - 30,
     borderRadius: 10,
-
-    overflow: "hidden"
   },
   detailsContainer: {
     padding: 5,

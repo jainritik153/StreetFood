@@ -19,7 +19,6 @@ export default class NearMeScreen extends React.Component {
     return (
       <View style={{ flex: 1, backgroundColor: "white" }}>
         <Header>
-          <NotificationHeader />
           <LocationHeader />
         </Header>
         <ScrollView>
@@ -33,12 +32,51 @@ export default class NearMeScreen extends React.Component {
             customOnPressForReview={() =>
               this.props.navigation.navigate("reviewScreen")
             }
-          ></Card>
-          <Card></Card>
-          <Card></Card>
-          <Card></Card>
-          <Card></Card>
-          <Card></Card>
+          />
+          <Card
+            customOnPressForVendorProfile={() =>
+              this.props.navigation.navigate("vendorProfileScreen")
+            }
+            customOnPressForComment={() =>
+              this.props.navigation.navigate("commentScreen")
+            }
+            customOnPressForReview={() =>
+              this.props.navigation.navigate("reviewScreen")
+            }
+          />
+          <Card
+            customOnPressForVendorProfile={() =>
+              this.props.navigation.navigate("vendorProfileScreen")
+            }
+            customOnPressForComment={() =>
+              this.props.navigation.navigate("commentScreen")
+            }
+            customOnPressForReview={() =>
+              this.props.navigation.navigate("reviewScreen")
+            }
+          />
+          <Card
+            customOnPressForVendorProfile={() =>
+              this.props.navigation.navigate("vendorProfileScreen")
+            }
+            customOnPressForComment={() =>
+              this.props.navigation.navigate("commentScreen")
+            }
+            customOnPressForReview={() =>
+              this.props.navigation.navigate("reviewScreen")
+            }
+          />
+          <Card
+            customOnPressForVendorProfile={() =>
+              this.props.navigation.navigate("vendorProfileScreen")
+            }
+            customOnPressForComment={() =>
+              this.props.navigation.navigate("commentScreen")
+            }
+            customOnPressForReview={() =>
+              this.props.navigation.navigate("reviewScreen")
+            }
+          />
         </ScrollView>
       </View>
     );

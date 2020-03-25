@@ -24,12 +24,14 @@ export default class Card extends React.Component {
           </View>
 
           <View style={{ flex: 1, flexDirection: "column" }}>
-            <Text
-              style={{ marginTop: 5, fontSize: 15, fontWeight: "bold" }}
-              onPress={this.props.customOnPressForVendorProfile}
-            >
-              Vendor_name
-            </Text>
+            <TouchableOpacity>
+                <Text
+                    style={{ marginTop: 5, fontSize: 15, fontWeight: "bold" }}
+                    onPress={this.props.customOnPressForVendorProfile}
+                    >
+                    Vendor_name
+                </Text>
+            </TouchableOpacity>
             <Text style={{ fontSize: 11, color: "grey" }}>1,162 followers</Text>
             <Text style={{ fontSize: 11, color: "grey", fontStyle: "italic" }}>
               Mira-Bhhayandar
@@ -85,7 +87,7 @@ export default class Card extends React.Component {
                 </Text>
               </TouchableOpacity>
             </View>
-            <View>
+            <View >
               <TouchableOpacity
                 style={{ flexDirection: "row", alignItems: "center" }}
               >

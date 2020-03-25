@@ -21,10 +21,6 @@ export default function VendorProfileScreen(){
     return(
         <SafeAreaView style={styles.container}> 
             <ScrollView showsVerticalScrollIndicator={false}>
-                <View style={styles.titleBar}>
-                    <Ionicons name="md-arrow-back" size={24} color="#52575D"></Ionicons>
-                    <Ionicons name="md-more" size={24} color="#52575D"></Ionicons>
-                </View>
 
                 <View style={{alignSelf:"center"}}>
                     <View style={styles.profileImage}>
@@ -98,7 +94,7 @@ export default function VendorProfileScreen(){
 const styles = StyleSheet.create({
     container:{
         flex:1,
-        backgroundColor:"#fff"
+        backgroundColor:"#fff",
     },
     text:{
         color:"#52575D"
@@ -115,18 +111,12 @@ const styles = StyleSheet.create({
         width:undefined,
         height:undefined,
     },
-    titleBar:{
-        flexDirection:"row",
-        alignItems:"center",
-        justifyContent:"space-between",
-        marginTop:30,
-        marginHorizontal:16
-    },
     profileImage:{
         width:150,
         height:150,
         borderRadius:100,
-        overflow:"hidden"
+        overflow:"hidden",
+        marginTop:5
     },
     dm:{
         backgroundColor:"#41444B",

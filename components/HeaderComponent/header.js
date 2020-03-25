@@ -18,7 +18,6 @@ export default class Header extends React.Component{
 
 const styles =StyleSheet.create({
     header:{
-        height:"15%",
         width:"100%",
         backgroundColor:Color.screen_bg_color
         //borderBottomColor:"black",

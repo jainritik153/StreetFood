@@ -16,11 +16,6 @@ class trendingScreen extends React.Component {
     return (
       <View style={{ flex: 1, backgroundColor: Color.screen_bg_color }}>
         <ScrollView style={styles.scrollview}>
-          <View style={styles.heading}>
-            <Text style={{ color: "black", fontWeight: "bold", fontSize: 25 }}>
-              CATEGORIES
-            </Text>
-          </View>
           <CategoryListCard
             category="Chinese"
             url={

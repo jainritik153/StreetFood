@@ -53,8 +53,8 @@ const styles = StyleSheet.create({
     width: 320,
     marginLeft: 20,
     borderRadius: 10,
-    marginBottom: 40,
-    elevation: 5
+    marginTop:30,
+    elevation: 5,
   },
   text: {
     fontSize: 40,
