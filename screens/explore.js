@@ -48,7 +48,6 @@ function Explore() {
           style={{ marginLeft: "2%" }}
         />
         <TextInput
-          autoFocus
           type="text"
           style={{ color: "grey", fontSize: 18, marginLeft: "4%" }}
           placeholder="Search"
