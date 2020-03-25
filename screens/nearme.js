@@ -33,6 +33,7 @@ export default class NearMe extends React.Component {
           <Stack.Screen
             name="vendorProfileScreen"
             component={vendorProfileScreen}
+            
           />
           <Stack.Screen name="commentScreen" component={commentScreen} />
           <Stack.Screen name="reviewScreen" component={reviewScreen} />
