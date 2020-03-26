@@ -4,107 +4,105 @@ import Color from "../../assets/color";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { EvilIcons, SimpleLineIcons } from "react-native-vector-icons";
 
-export default class Card extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+export default function Card({
+  customOnPressForVendorProfile,
+  customOnPressForComment,
+  customOnPressForReview
+}) {
+  return (
+    <View style={styles.container}>
+      <View style={styles.cardHeaderContainer}>
+        <View style={styles.profileImage}>
+          <Image
+            source={{
+              uri:
+                "https://i.pinimg.com/originals/d4/d4/ee/d4d4ee8b3f45e22fa9306a1255c76d5c.jpg "
+            }}
+            style={styles.image}
+          ></Image>
+        </View>
 
-  render() {
-    return (
-      <View style={styles.container}>
-        <View style={styles.cardHeaderContainer}>
-          <View style={styles.profileImage}>
-            <Image
-              source={{
-                uri:
-                  "https://i.pinimg.com/originals/d4/d4/ee/d4d4ee8b3f45e22fa9306a1255c76d5c.jpg "
-              }}
-              style={styles.image}
-            ></Image>
-          </View>
-
-          <View style={{ flex: 1, flexDirection: "column" }}>
-            <TouchableOpacity>
-                <Text
-                    style={{ marginTop: 5, fontSize: 15, fontWeight: "bold" }}
-                    onPress={this.props.customOnPressForVendorProfile}
-                    >
-                    Vendor_name
-                </Text>
-            </TouchableOpacity>
-            <Text style={{ fontSize: 11, color: "grey" }}>1,162 followers</Text>
-            <Text style={{ fontSize: 11, color: "grey", fontStyle: "italic" }}>
-              Mira-Bhhayandar
+        <View style={{ flex: 1, flexDirection: "column" }}>
+          <TouchableOpacity>
+            <Text
+              style={{ marginTop: 5, fontSize: 15, fontWeight: "bold" }}
+              onPress={customOnPressForVendorProfile}
+            >
+              Vendor_name
             </Text>
+          </TouchableOpacity>
+          <Text style={{ fontSize: 11, color: "grey" }}>1,162 followers</Text>
+          <Text style={{ fontSize: 11, color: "grey", fontStyle: "italic" }}>
+            Mira-Bhhayandar
+          </Text>
+        </View>
+        <View style={{ flex: 1, flexDirection: "row" }}>
+          <TouchableOpacity>
+            <Text
+              style={{
+                alignSelf: "center",
+                marginTop: 25,
+                marginLeft: 70,
+                fontSize: 15,
+                fontWeight: "bold",
+                color: Color.theme_color
+              }}
+            >
+              + Follow
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+
+      <View style={styles.videoContainer}>
+        <Image
+          source={{
+            uri: "https://im.rediff.com/getahead/2017/mar/28foodies5.jpg"
+          }}
+          style={{ height: undefined, flex: 1 }}
+        ></Image>
+      </View>
+
+      <View styles={styles.description}>
+        <View style={styles.likesContainer}>
+          <View style={{ flexDirection: "row", alignItems: "center" }}>
+            <TouchableOpacity
+              style={{ flexDirection: "row", alignItems: "center" }}
+            >
+              <EvilIcons name="like" size={35} color="grey" />
+              <Text style={{ color: "grey", fontSize: 13 }}>Like</Text>
+            </TouchableOpacity>
           </View>
-          <View style={{ flex: 1, flexDirection: "row" }}>
-            <TouchableOpacity>
+          <View style={{ flexDirection: "row", alignItems: "center" }}>
+            <TouchableOpacity
+              style={{ flexDirection: "row", alignItems: "center" }}
+            >
+              <EvilIcons name="comment" size={35} color="grey" />
               <Text
-                style={{
-                  alignSelf: "center",
-                  marginTop: 25,
-                  marginLeft: 70,
-                  fontSize: 15,
-                  fontWeight: "bold",
-                  color: Color.theme_color
-                }}
+                style={{ color: "grey", fontSize: 13 }}
+                onPress={customOnPressForComment}
               >
-                + Follow
+                Comment
+              </Text>
+            </TouchableOpacity>
+          </View>
+          <View>
+            <TouchableOpacity
+              style={{ flexDirection: "row", alignItems: "center" }}
+            >
+              <SimpleLineIcons name="star" size={20} color="grey" />
+              <Text
+                style={{ marginLeft: 5, color: "grey", fontSize: 13 }}
+                onPress={customOnPressForReview}
+              >
+                Reviews
               </Text>
             </TouchableOpacity>
           </View>
         </View>
-
-        <View style={styles.videoContainer}>
-          <Image
-            source={{
-              uri: "https://im.rediff.com/getahead/2017/mar/28foodies5.jpg"
-            }}
-            style={{ height: undefined, flex: 1 }}
-          ></Image>
-        </View>
-
-        <View styles={styles.description}>
-          <View style={styles.likesContainer}>
-            <View style={{ flexDirection: "row", alignItems: "center" }}>
-              <TouchableOpacity
-                style={{ flexDirection: "row", alignItems: "center" }}
-              >
-                <EvilIcons name="like" size={35} color="grey" />
-                <Text style={{ color: "grey", fontSize: 13 }}>Like</Text>
-              </TouchableOpacity>
-            </View>
-            <View style={{ flexDirection: "row", alignItems: "center" }}>
-              <TouchableOpacity
-                style={{ flexDirection: "row", alignItems: "center" }}
-              >
-                <EvilIcons name="comment" size={35} color="grey" />
-                <Text
-                  style={{ color: "grey", fontSize: 13 }}
-                  onPress={this.props.customOnPressForComment}
-                >
-                  Comment
-                </Text>
-              </TouchableOpacity>
-            </View>
-            <View >
-              <TouchableOpacity
-                style={{ flexDirection: "row", alignItems: "center" }}
-              >
-                <SimpleLineIcons name="star" size={20} color="grey" />
-                <Text
-                  style={{ marginLeft: 5, color: "grey", fontSize: 13 }}
-                  onPress={this.props.customOnPressForReview}
-                >
-                  Reviews
-                </Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </View>
       </View>
-    );
-  }
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({

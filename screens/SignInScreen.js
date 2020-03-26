@@ -17,51 +17,49 @@ import {
 } from "react-native";
 import signUpScreen from "./SignUpScreen";
 
-export default class SignInScreen extends Component {
-  render() {
-    return (
-      <SafeAreaView style={styles.container}>
-        <KeyboardAvoidingView behavior="padding" style={styles.container}>
-          <TouchableWithoutFeedback
-            style={styles.container}
-            onPress={Keyboard.dismiss}
-          >
+export default function SignInScreen({ navigation }) {
+  return (
+    <SafeAreaView style={styles.container}>
+      <KeyboardAvoidingView behavior="padding" style={styles.container}>
+        <TouchableWithoutFeedback
+          style={styles.container}
+          onPress={Keyboard.dismiss}
+        >
+          <View style={styles.logocontainer}>
             <View style={styles.logocontainer}>
-              <View style={styles.logocontainer}>
-                <Text style={styles.logo}>food app logo</Text>
-                <Text style={styles.title}>food app title</Text>
-              </View>
-              <View style={styles.infocontainer}>
-                <TextInput
-                  placeholder="Enter emailid"
-                  returnKeyType="next"
-                  autoCorrect={false}
-                  keyboardType="email-address"
-                  style={styles.input}
-                ></TextInput>
-                <TextInput
-                  placeholder="Enter password"
-                  returnKeyType="go"
-                  secureTextEntry
-                  autoCorrect={false}
-                  style={styles.input}
-                ></TextInput>
-                <TouchableOpacity style={styles.buttonContainer}>
-                  <Button style={styles.textButton} title="Sign In" />
-                </TouchableOpacity>
-                <TouchableOpacity
-                  style={styles.buttonContainer}
-                  onPress={() => this.props.navigation.navigate("signUpScreen")}
-                >
-                  <Button style={styles.textButton} title="Sign Up" />
-                </TouchableOpacity>
-              </View>
+              <Text style={styles.logo}>food app logo</Text>
+              <Text style={styles.title}>food app title</Text>
             </View>
-          </TouchableWithoutFeedback>
-        </KeyboardAvoidingView>
-      </SafeAreaView>
-    );
-  }
+            <View style={styles.infocontainer}>
+              <TextInput
+                placeholder="Enter emailid"
+                returnKeyType="next"
+                autoCorrect={false}
+                keyboardType="email-address"
+                style={styles.input}
+              ></TextInput>
+              <TextInput
+                placeholder="Enter password"
+                returnKeyType="go"
+                secureTextEntry
+                autoCorrect={false}
+                style={styles.input}
+              ></TextInput>
+              <TouchableOpacity style={styles.buttonContainer}>
+                <Button style={styles.textButton} title="Sign In" />
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.buttonContainer}
+                onPress={() => navigation.navigate("signUpScreen")}
+              >
+                <Button style={styles.textButton} title="Sign Up" />
+              </TouchableOpacity>
+            </View>
+          </View>
+        </TouchableWithoutFeedback>
+      </KeyboardAvoidingView>
+    </SafeAreaView>
+  );
 }
 
 const styles = StyleSheet.create({

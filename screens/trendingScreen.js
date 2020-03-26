@@ -11,52 +11,42 @@ import { createStackNavigator } from "@react-navigation/stack";
 const Stack = createStackNavigator();
 
 //trending class component is changed to functional component
-class trendingScreen extends React.Component {
-  render() {
-    return (
-      <View style={{ flex: 1, backgroundColor: Color.screen_bg_color }}>
-        <ScrollView style={styles.scrollview}>
-          <CategoryListCard
-            category="Chinese"
-            url={
-              "https://images.unsplash.com/photo-1557682224-5b8590cd9ec5?ixlib=rb-1.2.1&w=1000&q=80"
-            }
-            customOnPress={() =>
-              this.props.navigation.navigate("trendingVideoScreen")
-            }
-          ></CategoryListCard>
+function trendingScreen({ navigation }) {
+  return (
+    <View style={{ flex: 1, backgroundColor: Color.screen_bg_color }}>
+      <ScrollView style={styles.scrollview}>
+        <CategoryListCard
+          category="Chinese"
+          url={
+            "https://images.unsplash.com/photo-1557682224-5b8590cd9ec5?ixlib=rb-1.2.1&w=1000&q=80"
+          }
+          customOnPress={() => navigation.navigate("trendingVideoScreen")}
+        ></CategoryListCard>
 
-          <CategoryListCard
-            category="South Indian"
-            url={
-              "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSyLLFqbRDmD-imxGBvcu2d4o8p48Tqr9HJC0CYQ5fECifd6NXB"
-            }
-            customOnPress={() =>
-              this.props.navigation.navigate("trendingVideoScreen")
-            }
-          ></CategoryListCard>
-          <CategoryListCard
-            category="Italian"
-            url={
-              "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1c79rHRO3f_EMA-Uw-pWFge_iXxjpsB0Mil2rDsolzB9V8j7p"
-            }
-            customOnPress={() =>
-              this.props.navigation.navigate("trendingVideoScreen")
-            }
-          ></CategoryListCard>
-          <CategoryListCard
-            category="Mexican"
-            url={
-              "https://vanseodesign.com/blog/wp-content/uploads/2012/11/linear-gradient.png"
-            }
-            customOnPress={() =>
-              this.props.navigation.navigate("trendingVideoScreen")
-            }
-          ></CategoryListCard>
-        </ScrollView>
-      </View>
-    );
-  }
+        <CategoryListCard
+          category="South Indian"
+          url={
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSyLLFqbRDmD-imxGBvcu2d4o8p48Tqr9HJC0CYQ5fECifd6NXB"
+          }
+          customOnPress={() => navigation.navigate("trendingVideoScreen")}
+        ></CategoryListCard>
+        <CategoryListCard
+          category="Italian"
+          url={
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1c79rHRO3f_EMA-Uw-pWFge_iXxjpsB0Mil2rDsolzB9V8j7p"
+          }
+          customOnPress={() => navigation.navigate("trendingVideoScreen")}
+        ></CategoryListCard>
+        <CategoryListCard
+          category="Mexican"
+          url={
+            "https://vanseodesign.com/blog/wp-content/uploads/2012/11/linear-gradient.png"
+          }
+          customOnPress={() => navigation.navigate("trendingVideoScreen")}
+        ></CategoryListCard>
+      </ScrollView>
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
