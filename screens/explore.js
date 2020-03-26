@@ -12,6 +12,7 @@ import Color from "../assets/color";
 import Icon from "react-native-vector-icons/Ionicons";
 import { ScrollView } from "react-native-gesture-handler";
 import { Input } from "react-native-elements";
+import ExploreCard from '../components/ExploreComponent/exploreVideoCard'
 
 const HEADER_HEIGHT = StatusBar.currentHeight;
 
@@ -57,8 +58,7 @@ function Explore() {
         <ScrollView showsHorizontalScrollIndicator={false} horizontal={true}>
           {categories.map(category => (
             <Text key={category.id} style={styles.category}>
-              {" "}
-              {category.categoryName}{" "}
+              {category.categoryName}
             </Text>
           ))}
         </ScrollView>
@@ -66,27 +66,10 @@ function Explore() {
 
       <View style={styles.exploreMediaContainer}>
         <ScrollView showsVerticalScrollIndicator={false}>
-          <View style={{ flexDirection: "row" }}>
-            <View style={styles.mediaImageContainer}>
-              <ImageBackground
-                resizeMode="cover"
-                style={styles.image}
-                source={{
-                  uri:
-                    "https://naaniz.com/wp-content/uploads/2018/11/Vada-Pav.jpg"
-                }}
-              ></ImageBackground>
-            </View>
-            <View style={styles.mediaImageContainer}>
-              <Image
-                resizeMode="cover"
-                style={styles.image}
-                source={{
-                  uri:
-                    "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcScbCH9nEkq0wlDTl6y1Yfksd_HHHdeO8zC48IS24uz4l6lfi0n"
-                }}
-              ></Image>
-            </View>
+          <View style={{ flexDirection: "row" ,flex:1,alignItems:"flex-start",flexWrap:"wrap"}}>
+            
+            <ExploreCard imageUrl={"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcScbCH9nEkq0wlDTl6y1Yfksd_HHHdeO8zC48IS24uz4l6lfi0n"}/>
+            <ExploreCard imageUrl={"https://naaniz.com/wp-content/uploads/2018/11/Vada-Pav.jpg"}/>
           </View>
           <View>
             <View
@@ -174,13 +157,15 @@ const styles = StyleSheet.create({
   },
   category: {
     padding: 5,
+    paddingHorizontal:10,
     borderColor: "grey",
     borderWidth: 0.2,
     marginHorizontal: 5,
     borderRadius: 5,
     marginBottom: 5,
     backgroundColor: "white",
-    fontWeight: "bold"
+    fontWeight: "bold",
+    
   },
   exploreMediaContainer: {},
   mediaImageContainer: {
