@@ -37,11 +37,11 @@ const HEADER_HEIGHT = Platform.OS == "ios" ? 115 : 60 + StatusBar.currentHeight;
 
 const handlePress = uri => {};
 
-export default class TrendingVideoScreen extends React.Component {
-  render() {
-    // const [modalOpen,setModalOpen] =useState(false)  //react hooks with modalOpen VArible eith deafult value as false
-    // const [imageuri,setImageuri] =useState("")
+export default function TrendingVideoScreen({ navigation }) {
+  // const [modalOpen,setModalOpen] =useState(false)  //react hooks with modalOpen VArible eith deafult value as false
+  // const [imageuri,setImageuri] =useState("")
 
+<<<<<<< HEAD
     const scrollY = new Animated.Value(0);
     const diffClampScrollY = Animated.diffClamp(scrollY, 0, HEADER_HEIGHT);
     const headerY = Animated.interpolate(diffClampScrollY, {
@@ -103,71 +103,128 @@ export default class TrendingVideoScreen extends React.Component {
                     <Text style={{ fontSize: 11, color: Color.main_color }}>
                       1,162 followers
                     </Text>
+=======
+  const scrollY = new Animated.Value(0);
+  const diffClampScrollY = Animated.diffClamp(scrollY, 0, HEADER_HEIGHT);
+  const headerY = Animated.interpolate(diffClampScrollY, {
+    inputRange: [0, HEADER_HEIGHT],
+    outputRange: [0, -HEADER_HEIGHT]
+  });
+  return (
+    <View style={styles.container}>
+      <Animated.ScrollView
+        scrollEnabled
+        showsHorizontalScrollIndicator={false}
+        snapToAlignment="center"
+        pagingEnabled
+        horizontal={true}
+        scrollEventThrottle={16}
+      >
+        {images.map(image => (
+          <View key={image.id} style={styles.imageConatiner}>
+            <ImageBackground
+              resizeMode="cover"
+              source={{ uri: image.uri }}
+              style={{
+                flex: 1,
+                height: undefined,
+                width: undefined,
+                elevation: 10
+              }}
+              imageStyle={{ borderRadius: 10 }}
+            >
+              <View style={styles.cardHeaderContainer}>
+                <View style={styles.profileImage}>
+                  <Image
+                    source={{
+                      uri:
+                        "https://i.pinimg.com/originals/d4/d4/ee/d4d4ee8b3f45e22fa9306a1255c76d5c.jpg "
+                    }}
+                    style={styles.image}
+                  ></Image>
+                </View>
+                <View style={{ flex: 1, flexDirection: "column" }}>
+                  <TouchableOpacity>
+>>>>>>> 70fa8c72edf2a1d741a89222acfb4782519b039d
                     <Text
                       style={{
-                        fontSize: 11,
                         color: Color.main_color,
-                        fontStyle: "italic"
+                        marginTop: 5,
+                        fontSize: 15,
+                        fontWeight: "bold"
                       }}
+                      onPress={() => navigation.navigate("vendorProfileScreen")}
                     >
-                      Mira-Bhhayandar
-                    </Text>
-                  </View>
-                  <View style={{ flex: 1, flexDirection: "row" }}>
-                    <TouchableOpacity>
-                      <Text
-                        style={{
-                          alignSelf: "center",
-                          marginTop: 25,
-                          marginLeft: 70,
-                          fontSize: 15,
-                          fontWeight: "bold",
-                          color: Color.theme_color
-                        }}
-                      >
-                        + Follow
-                      </Text>
-                    </TouchableOpacity>
-                  </View>
-                </View>
-
-                <View style={styles.detailsContainer}>
-                  <TouchableOpacity>
-                    <Text style={styles.title}
-                      onPress={() =>
-                        this.props.navigation.navigate("videoDetails")
-                      }
-                    >
-                      Dish Name with some description..
+                      Vendor Name
                     </Text>
                   </TouchableOpacity>
-                    
-                  <Text style={styles.subtitle}>location</Text>
-                  <View
-                    style={{ flexDirection: "row", alignItems: "flex-start" }}
+
+                  <Text style={{ fontSize: 11, color: Color.main_color }}>
+                    1,162 followers
+                  </Text>
+                  <Text
+                    style={{
+                      fontSize: 11,
+                      color: Color.main_color,
+                      fontStyle: "italic"
+                    }}
                   >
-                    <Text style={styles.views}>108k views </Text>
-                  </View>
+                    Mira-Bhhayandar
+                  </Text>
                 </View>
-              </ImageBackground>
-            </View>
-          ))}
-        </Animated.ScrollView>
-      </View>
-    );
-  }
+                <View style={{ flex: 1, flexDirection: "row" }}>
+                  <TouchableOpacity>
+                    <Text
+                      style={{
+                        alignSelf: "center",
+                        marginTop: 25,
+                        marginLeft: 70,
+                        fontSize: 15,
+                        fontWeight: "bold",
+                        color: Color.theme_color
+                      }}
+                    >
+                      + Follow
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+
+              <View style={styles.detailsContainer}>
+                <TouchableOpacity>
+                  <Text
+                    style={styles.title}
+                    onPress={() => navigation.navigate("videoDetails")}
+                  >
+                    Dish Name with some description..
+                  </Text>
+                </TouchableOpacity>
+
+                <Text style={styles.subtitle}>location</Text>
+                <View
+                  style={{ flexDirection: "row", alignItems: "flex-start" }}
+                >
+                  <Text style={styles.views}>108k views </Text>
+                </View>
+              </View>
+            </ImageBackground>
+          </View>
+        ))}
+      </Animated.ScrollView>
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex:1
+    flex: 1
   },
   imageConatiner: {
     //flex:1,
     //height:450,
     margin: 15,
     width: width - 30,
-    borderRadius: 10,
+    borderRadius: 10
   },
   detailsContainer: {
     padding: 5,
