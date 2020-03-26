@@ -41,69 +41,6 @@ export default function TrendingVideoScreen({ navigation }) {
   // const [modalOpen,setModalOpen] =useState(false)  //react hooks with modalOpen VArible eith deafult value as false
   // const [imageuri,setImageuri] =useState("")
 
-<<<<<<< HEAD
-    const scrollY = new Animated.Value(0);
-    const diffClampScrollY = Animated.diffClamp(scrollY, 0, HEADER_HEIGHT);
-    const headerY = Animated.interpolate(diffClampScrollY, {
-      inputRange: [0, HEADER_HEIGHT],
-      outputRange: [0, -HEADER_HEIGHT]
-    });
-    return (
-      <View style={styles.container}>
-
-        <Animated.ScrollView
-          scrollEnabled
-          showsHorizontalScrollIndicator={false}
-          snapToAlignment="center"
-          pagingEnabled
-          horizontal={true}
-          scrollEventThrottle={16}
-        
-        >
-          {images.map(image => (
-            <View key={image.id} style={styles.imageConatiner}>
-              <ImageBackground
-                resizeMode="cover"
-                source={{ uri: image.uri }}
-                style={{
-                  flex: 1,
-                  height: undefined,
-                  width: undefined,
-                  elevation: 10
-                }}
-                imageStyle={{ borderRadius: 10 }}
-              >
-                <View style={styles.cardHeaderContainer}>
-                  <View style={styles.profileImage}>
-                    <Image
-                      source={{
-                        uri:
-                          "https://i.pinimg.com/originals/d4/d4/ee/d4d4ee8b3f45e22fa9306a1255c76d5c.jpg "
-                      }}
-                      style={styles.image}
-                    ></Image>
-                  </View>
-                  <View style={{ flex: 1, flexDirection: "column" }}>
-                    <TouchableOpacity>
-                      <Text
-                        style={{
-                          color: Color.main_color,
-                          marginTop: 5,
-                          fontSize: 15,
-                          fontWeight: "bol+d"
-                        }}
-                        onPress={() =>
-                          this.props.navigation.navigate("vendorProfileScreen")
-                        }
-                      >
-                        Vendor Name
-                      </Text>
-                    </TouchableOpacity>
-                    
-                    <Text style={{ fontSize: 11, color: Color.main_color }}>
-                      1,162 followers
-                    </Text>
-=======
   const scrollY = new Animated.Value(0);
   const diffClampScrollY = Animated.diffClamp(scrollY, 0, HEADER_HEIGHT);
   const headerY = Animated.interpolate(diffClampScrollY, {
@@ -145,7 +82,6 @@ export default function TrendingVideoScreen({ navigation }) {
                 </View>
                 <View style={{ flex: 1, flexDirection: "column" }}>
                   <TouchableOpacity>
->>>>>>> 70fa8c72edf2a1d741a89222acfb4782519b039d
                     <Text
                       style={{
                         color: Color.main_color,
