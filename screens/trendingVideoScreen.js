@@ -90,7 +90,7 @@ export default class TrendingVideoScreen extends React.Component {
                           color: Color.main_color,
                           marginTop: 5,
                           fontSize: 15,
-                          fontWeight: "bold"
+                          fontWeight: "bol+d"
                         }}
                         onPress={() =>
                           this.props.navigation.navigate("vendorProfileScreen")
