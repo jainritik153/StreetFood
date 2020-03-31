@@ -21,7 +21,6 @@ const styles = StyleSheet.create({
         height: 210,
         borderRadius: 5,
         overflow: "hidden",
-    
         marginLeft: 3,
         marginVertical: 2
       },

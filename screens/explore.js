@@ -43,12 +43,12 @@ function Explore() {
         <Stack.Screen
           name="exploreScreen"
           component={exploreScreen}
-          options={{ title: "exploreScreen" }}
+          options={{ title: "Explore" }}
         />
         <Stack.Screen
           name="exploreCategoryScreen"
           component={exploreCategoryScreen}
-          options={{ title: "exploreCategoryScreen" }}
+          options={{ title: "Category" }}
         />
       </Stack.Navigator>
     </NavigationContainer>

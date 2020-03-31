@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import Color from "../assets/color";
 import Icon from "react-native-vector-icons/Ionicons";
-import { ScrollView } from "react-native-gesture-handler";
+import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 import { Input } from "react-native-elements";
 import ExploreCard from "../components/ExploreComponent/exploreVideoCard";
 import exploreCategoryScreen from "./exploreCategoryScreen";
@@ -41,32 +41,21 @@ const images = [
 function exploreScreen({ navigation }) {
   return (
     <View style={styles.container}>
-      <View style={styles.searchContainer}>
-        <Icon
-          name="md-search"
-          color="black"
-          size={26}
-          style={{ marginLeft: "2%" }}
-        />
-        <TextInput
-          type="text"
-          style={{ color: "grey", fontSize: 18, marginLeft: "4%" }}
-          placeholder="Search"
-        ></TextInput>
-      </View>
-      <View style={styles.categoryListContainer}>
-        <ScrollView showsHorizontalScrollIndicator={false} horizontal={true}>
-          {categories.map(category => (
-            <Text
+        <View style={styles.categoryListContainer}>
+          <ScrollView showsHorizontalScrollIndicator={false} horizontal={true}>
+            {categories.map(category => (
+            <TouchableOpacity key={category.id}>
+              <Text
               key={category.id}
               style={styles.category}
               onPress={() => navigation.navigate("exploreCategoryScreen")}
-            >
-              {category.categoryName}
-            </Text>
-          ))}
-        </ScrollView>
-      </View>
+              >
+                {category.categoryName}
+              </Text>
+            </TouchableOpacity>
+            ))}
+          </ScrollView>
+        </View>
 
       <View style={styles.exploreMediaContainer}>
         <ScrollView showsVerticalScrollIndicator={false}>
@@ -158,20 +147,12 @@ function exploreScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginBottom: 115
-  },
-  searchContainer: {
-    backgroundColor: Color.light_grey,
-    marginTop: HEADER_HEIGHT,
-    paddingHorizontal: 10,
-    paddingVertical: 8,
-    flexDirection: "row",
-    alignItems: "center"
+    marginBottom:55
   },
   categoryListContainer: {
     backgroundColor: Color.light_grey,
-    paddingHorizontal: 10,
-    padding: 5
+    padding: 5,
+    marginTop:5,
   },
   category: {
     padding: 5,
