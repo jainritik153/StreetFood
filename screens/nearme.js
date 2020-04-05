@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useReducer, useEffect } from "react";
 import {
   View,
   Text,
@@ -26,7 +26,12 @@ import commentScreen from "../components/CommentComponent/comment";
 
 const Stack = createStackNavigator();
 const header_height = StatusBar.currentHeight;
+
+
 export default function NearMe() {
+  
+  
+
   return (
     <NavigationContainer>
       <Stack.Navigator

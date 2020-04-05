@@ -21,13 +21,13 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 const header_height = StatusBar.currentHeight;
 
-//comment kia hai yeh line
 const Stack = createStackNavigator();
 //changed class component to function component
 function Explore() {
   return (
     <NavigationContainer>
       <Stack.Navigator
+
         screenOptions={{
           gestureEnabled: true,
           headerStyle: {

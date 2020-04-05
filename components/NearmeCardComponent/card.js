@@ -7,7 +7,9 @@ import { EvilIcons, SimpleLineIcons } from "react-native-vector-icons";
 export default function Card({
   customOnPressForVendorProfile,
   customOnPressForComment,
-  customOnPressForReview
+  customOnPressForReview,
+  cardData,
+  videoStats
 }) {
   return (
     <View style={styles.container}>
@@ -28,12 +30,12 @@ export default function Card({
               style={{ marginTop: 5, fontSize: 15, fontWeight: "bold" }}
               onPress={customOnPressForVendorProfile}
             >
-              Vendor_name
+              {cardData.Vendor_name}
             </Text>
           </TouchableOpacity>
-          <Text style={{ fontSize: 11, color: "grey" }}>1,162 followers</Text>
+          <Text style={{ fontSize: 11, color: "grey" }}>{cardData.Followers}Followers</Text>
           <Text style={{ fontSize: 11, color: "grey", fontStyle: "italic" }}>
-            Mira-Bhhayandar
+            {cardData.location}
           </Text>
         </View>
         <View style={{ flex: 1, flexDirection: "row" }}>
@@ -57,7 +59,7 @@ export default function Card({
       <View style={styles.videoContainer}>
         <Image
           source={{
-            uri: "https://im.rediff.com/getahead/2017/mar/28foodies5.jpg"
+            uri: videoStats.url
           }}
           style={{ height: undefined, flex: 1 }}
         ></Image>
@@ -70,7 +72,7 @@ export default function Card({
               style={{ flexDirection: "row", alignItems: "center" }}
             >
               <EvilIcons name="like" size={35} color="grey" />
-              <Text style={{ color: "grey", fontSize: 13 }}>Like</Text>
+        <Text style={{ color: "grey", fontSize: 13 }}>{videoStats.likes}</Text>
             </TouchableOpacity>
           </View>
           <View style={{ flexDirection: "row", alignItems: "center" }}>
@@ -82,7 +84,7 @@ export default function Card({
                 style={{ color: "grey", fontSize: 13 }}
                 onPress={customOnPressForComment}
               >
-                Comment
+                {videoStats.Comments}
               </Text>
             </TouchableOpacity>
           </View>
@@ -95,7 +97,7 @@ export default function Card({
                 style={{ marginLeft: 5, color: "grey", fontSize: 13 }}
                 onPress={customOnPressForReview}
               >
-                Reviews
+                {videoStats.Review}
               </Text>
             </TouchableOpacity>
           </View>
