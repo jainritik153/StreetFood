@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, ScrollView ,SafeAreaView,Image,ImageBackground,
 import {Ionicons , MaterialIcons} from 'react-native-vector-icons'
 import Color from "../assets/color";
 import color from "../assets/color";
+import ProfileImageComponent from "../components/ProfileComponent/profileImageComponent"
 
 
 const HEADER_HEIGHT=Platform.OS=='ios'?115:60+StatusBar.currentHeight
@@ -22,14 +23,7 @@ export default function VendorProfileScreen(){
         <SafeAreaView style={styles.container}> 
             <ScrollView showsVerticalScrollIndicator={false}>
 
-                <View style={{alignSelf:"center"}}>
-                    <View style={styles.profileImage}>
-                        <Image source={{uri:"https://i.pinimg.com/originals/d4/d4/ee/d4d4ee8b3f45e22fa9306a1255c76d5c.jpg "}} style={styles.image}></Image>
-                    </View>
-                    <View style={styles.dm}>
-                        <MaterialIcons name="chat" size={18} color="#DFD8C8"></MaterialIcons>
-                    </View>
-                </View>
+                <ProfileImageComponent imageUrl={"https://i.pinimg.com/originals/d4/d4/ee/d4d4ee8b3f45e22fa9306a1255c76d5c.jpg "}/>
 
                 <View style={styles.infoContainer}>
                     <Text style={[styles.text,{fontWeight:"200" , fontSize:30}]}>Manjit Station</Text>
@@ -110,23 +104,6 @@ const styles = StyleSheet.create({
         flex:1,
         width:undefined,
         height:undefined,
-    },
-    profileImage:{
-        width:150,
-        height:150,
-        borderRadius:100,
-        overflow:"hidden",
-        marginTop:5
-    },
-    dm:{
-        backgroundColor:"#41444B",
-        position:"absolute",
-        top:20,
-        width:40,
-        height:40,
-        borderRadius:20,
-        alignItems:"center",
-        justifyContent:"center"
     },
     infoContainer:{
         alignSelf:"center",

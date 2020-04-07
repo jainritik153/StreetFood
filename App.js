@@ -48,7 +48,7 @@ const TabNavigator = createBottomTabNavigator(
       }
     },
     Profile: {
-      screen: SignIn,
+      screen: UserProfile,
       navigationOptions: {
         tabBarLabel: "Profile",
         tabBarIcon: ({ tintColor }) => (
