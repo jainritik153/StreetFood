@@ -19,46 +19,36 @@ import signUpScreen from "./SignUpScreen";
 
 export default function SignInScreen({ navigation }) {
   return (
-    <SafeAreaView style={styles.container}>
-      <KeyboardAvoidingView behavior="padding" style={styles.container}>
-        <TouchableWithoutFeedback
-          style={styles.container}
-          onPress={Keyboard.dismiss}
+    <View style={styles.container}>
+      <View style={styles.logocontainer}>
+        <Text style={styles.logotitle}>logo</Text>
+      </View>
+      <View style={styles.subcontainer}>
+        <TextInput
+          placeholder="Enter emailid"
+          returnKeyType="next"
+          autoCorrect={false}
+          keyboardType="email-address"
+          style={styles.input}
+        ></TextInput>
+        <TextInput
+          placeholder="Enter password"
+          returnKeyType="go"
+          secureTextEntry
+          autoCorrect={false}
+          style={styles.input}
+        ></TextInput>
+        <TouchableOpacity style={styles.buttonContainer}>
+          <Button style={styles.textButton} title="Sign In" />
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.buttonContainer}
+          onPress={() => navigation.navigate("signUpScreen")}
         >
-          <View style={styles.logocontainer}>
-            <View style={styles.logocontainer}>
-              <Text style={styles.logo}>food app logo</Text>
-              <Text style={styles.title}>food app title</Text>
-            </View>
-            <View style={styles.infocontainer}>
-              <TextInput
-                placeholder="Enter emailid"
-                returnKeyType="next"
-                autoCorrect={false}
-                keyboardType="email-address"
-                style={styles.input}
-              ></TextInput>
-              <TextInput
-                placeholder="Enter password"
-                returnKeyType="go"
-                secureTextEntry
-                autoCorrect={false}
-                style={styles.input}
-              ></TextInput>
-              <TouchableOpacity style={styles.buttonContainer}>
-                <Button style={styles.textButton} title="Sign In" />
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={styles.buttonContainer}
-                onPress={() => navigation.navigate("signUpScreen")}
-              >
-                <Button style={styles.textButton} title="Sign Up" />
-              </TouchableOpacity>
-            </View>
-          </View>
-        </TouchableWithoutFeedback>
-      </KeyboardAvoidingView>
-    </SafeAreaView>
+          <Button style={styles.textButton} title="Sign Up" />
+        </TouchableOpacity>
+      </View>
+    </View>
   );
 }
 
@@ -70,19 +60,25 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     backgroundColor: Color.screen_bg_color
   },
-  logocontainer: {
-    flex: 1,
+  subcontainer: {
     alignItems: "center",
     justifyContent: "center",
-    bottom: 50
+    flexDirection: "column",
+    backgroundColor: Color.screen_bg_color,
+    marginTop: 100
   },
-  logo: {},
-  title: {
-    color: Color.main_color,
-    fontSize: 18,
+  logocontainer: {
+    alignItems: "center",
+    justifyContent: "center",
+
+    marginTop: 150
+  },
+
+  logotitle: {
+    fontSize: 15,
     textAlign: "center",
     marginTop: 5,
-    opacity: 0.9
+    opacity: 0.4
   },
   infocontainer: {
     position: "absolute",
@@ -101,7 +97,9 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     backgroundColor: Color.main_color,
-    marginBottom: 20
+    marginBottom: 10,
+    height: 40,
+    width: 340
   },
 
   textButton: {
