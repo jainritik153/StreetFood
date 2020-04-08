@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, ImageBackground } from "react-native";
 import ExploreCard from '../components/ExploreComponent/exploreVideoCard'
-import { ScrollView } from "react-native-gesture-handler";
+import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 
 const imageURL=[
     {id:1,url:"https://www.tarladalal.com/members/9306/procstepimgs/chinese-bhel-9-185164.jpg"},
@@ -21,7 +21,10 @@ export default function exploreCategoryScreen() {
         {
             imageURL.map(image=>{
                 return(
-                    <ExploreCard key ={image.id} imageUrl={image.url}/>
+                  <TouchableOpacity>
+                      <ExploreCard key ={image.id} imageUrl={image.url}/>
+                  </TouchableOpacity>
+                    
                 )
             })
         }

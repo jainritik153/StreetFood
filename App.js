@@ -18,6 +18,7 @@ import SignUpScreen from "./screens/SignUpScreen";
 import UserProfile from "./screens/userProfileScreen";
 import SignIn from "./screens/signIn";
 
+
 const TabNavigator = createBottomTabNavigator(
   {
     NearMe: {
@@ -48,7 +49,7 @@ const TabNavigator = createBottomTabNavigator(
       }
     },
     Profile: {
-      screen: UserProfile,
+      screen: VideoDetails,
       navigationOptions: {
         tabBarLabel: "Profile",
         tabBarIcon: ({ tintColor }) => (
