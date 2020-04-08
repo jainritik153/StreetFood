@@ -13,7 +13,7 @@ import {
   Keyboard,
   KeyboardAvoidingView,
   ColorPropType,
-  Button
+  Button,
 } from "react-native";
 import signUpScreen from "./SignUpScreen";
 
@@ -38,7 +38,10 @@ export default function SignInScreen({ navigation }) {
           autoCorrect={false}
           style={styles.input}
         ></TextInput>
-        <TouchableOpacity style={styles.buttonContainer}>
+        <TouchableOpacity
+          style={styles.buttonContainer}
+          onPress={() => navigation.navigate("Welcome")}
+        >
           <Button style={styles.textButton} title="Sign In" />
         </TouchableOpacity>
         <TouchableOpacity
@@ -58,33 +61,33 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     flexDirection: "column",
-    backgroundColor: Color.screen_bg_color
+    backgroundColor: Color.screen_bg_color,
   },
   subcontainer: {
     alignItems: "center",
     justifyContent: "center",
     flexDirection: "column",
     backgroundColor: Color.screen_bg_color,
-    marginTop: 100
+    marginTop: 100,
   },
   logocontainer: {
     alignItems: "center",
     justifyContent: "center",
 
-    marginTop: 150
+    marginTop: 150,
   },
 
   logotitle: {
     fontSize: 15,
     textAlign: "center",
     marginTop: 5,
-    opacity: 0.4
+    opacity: 0.4,
   },
   infocontainer: {
     position: "absolute",
     bottom: 5,
     height: 200,
-    padding: 20
+    padding: 20,
   },
   input: {
     height: 40,
@@ -93,28 +96,28 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     paddingHorizontal: 10,
     borderColor: "black",
-    borderWidth: 0.2
+    borderWidth: 0.2,
   },
   buttonContainer: {
     backgroundColor: Color.main_color,
     marginBottom: 10,
     height: 40,
-    width: 340
+    width: 340,
   },
 
   textButton: {
     fontSize: 15,
     fontWeight: "bold",
-    textAlign: "center"
+    textAlign: "center",
   },
   linkForSignUp: {
     fontSize: 18,
-    textAlign: "center"
+    textAlign: "center",
   },
   textLink: {
     fontSize: 15,
     textDecorationLine: "underline",
     textAlign: "center",
-    color: Color.main_color
-  }
+    color: Color.main_color,
+  },
 });
