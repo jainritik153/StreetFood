@@ -9,7 +9,7 @@ export default function Card({
   customOnPressForComment,
   customOnPressForReview,
   cardData,
-  videoStats
+  videoStats,
 }) {
   return (
     <View style={styles.container}>
@@ -18,7 +18,7 @@ export default function Card({
           <Image
             source={{
               uri:
-                "https://i.pinimg.com/originals/d4/d4/ee/d4d4ee8b3f45e22fa9306a1255c76d5c.jpg "
+                "https://i.pinimg.com/originals/d4/d4/ee/d4d4ee8b3f45e22fa9306a1255c76d5c.jpg ",
             }}
             style={styles.image}
           ></Image>
@@ -33,7 +33,9 @@ export default function Card({
               {cardData.Vendor_name}
             </Text>
           </TouchableOpacity>
-          <Text style={{ fontSize: 11, color: "grey" }}>{cardData.Followers}Followers</Text>
+          <Text style={{ fontSize: 11, color: "grey" }}>
+            {cardData.Followers}Followers
+          </Text>
           <Text style={{ fontSize: 11, color: "grey", fontStyle: "italic" }}>
             {cardData.location}
           </Text>
@@ -47,7 +49,7 @@ export default function Card({
                 marginLeft: 70,
                 fontSize: 15,
                 fontWeight: "bold",
-                color: Color.theme_color
+                color: Color.theme_color,
               }}
             >
               + Follow
@@ -59,7 +61,7 @@ export default function Card({
       <View style={styles.videoContainer}>
         <Image
           source={{
-            uri: videoStats.url
+            uri: videoStats.url,
           }}
           style={{ height: undefined, flex: 1 }}
         ></Image>
@@ -72,7 +74,9 @@ export default function Card({
               style={{ flexDirection: "row", alignItems: "center" }}
             >
               <EvilIcons name="like" size={35} color="grey" />
-        <Text style={{ color: "grey", fontSize: 13 }}>{videoStats.likes}</Text>
+              <Text style={{ color: "grey", fontSize: 13 }}>
+                {videoStats.likes}
+              </Text>
             </TouchableOpacity>
           </View>
           <View style={{ flexDirection: "row", alignItems: "center" }}>
@@ -111,7 +115,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     //width:345,
-    backgroundColor: Color.screen_bg_color
+    backgroundColor: Color.screen_bg_color,
     //marginVertical:5,
     //borderColor:"black",
     //borderWidth:0.2,
@@ -120,13 +124,13 @@ const styles = StyleSheet.create({
     //borderRadius:10
   },
   descriptionText: {
-    marginHorizontal: 5
+    marginHorizontal: 5,
   },
 
   videoContainer: {
     height: 380,
     borderBottomColor: "grey",
-    borderBottomWidth: 0.5
+    borderBottomWidth: 0.5,
   },
 
   likesContainer: {
@@ -139,14 +143,14 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     // borderBottomWidth:0.2,
     // borderBottomColor:"grey",
-    padding: 5
+    padding: 5,
   },
   cardHeaderContainer: {
     flex: 1,
     flexDirection: "row",
     //borderBottomColor:"grey",
     //borderBottomWidth:0.2,
-    marginVertical: 5
+    marginVertical: 5,
   },
   profileImage: {
     margin: 5,
@@ -155,11 +159,11 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     overflow: "hidden",
     borderWidth: 0.2,
-    borderColor: "black"
+    borderColor: "black",
   },
   image: {
     flex: 1,
     width: undefined,
-    height: undefined
-  }
+    height: undefined,
+  },
 });
