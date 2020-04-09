@@ -58,7 +58,7 @@ const liked = [
   },
 ];
 
-const username = "Manali";
+const username = "dineshch";
 
 export default function UserProfile({ navigation }) {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -67,11 +67,9 @@ export default function UserProfile({ navigation }) {
     fetch(`https://damp-refuge-17780.herokuapp.com/getuser/${username}`)
       .then((response) => response.json())
       .then((responseJson) => {
-        console.log(
-          "hihdsfidashfiadshfiafhidfh_________________________________________"
-        );
-        console.log(responseJson[0].Location);
-        dispatch({ type: "FETCH_DATA", payload: responseJson[0] });
+        console.log(responseJson[0]);
+        console.log(responseJson[0].liked)
+        dispatch({ type: "FETCH_DATA", payload: responseJson[0]});
       })
       .catch((error) => {
         dispatch({ type: "ERROR" });
@@ -132,6 +130,7 @@ export default function UserProfile({ navigation }) {
           >
             Liked videos
           </Text>
+          <Text>{state.data.liked[0].video_id}</Text>
           <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
             {liked.map((video) => {
               return (
