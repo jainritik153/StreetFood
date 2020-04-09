@@ -7,6 +7,7 @@ import {
   StatusBar,
   ScrollView,
   Image,
+  ActivityIndicator,
 } from "react-native";
 import ProfileImageComponent from "../components/ProfileComponent/profileImageComponent";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -22,12 +23,14 @@ const reducer = (state, action) => {
       return {
         loading: false,
         data: action.payload,
+
         error: "",
       };
     case "ERROR":
       return {
         loading: false,
-        data: {},
+        data: [],
+
         error: "Something went wrong",
       };
   }
@@ -35,7 +38,8 @@ const reducer = (state, action) => {
 
 const initialState = {
   loading: true,
-  data: {},
+  data: [],
+
   error: "",
 };
 
@@ -59,7 +63,17 @@ const liked = [
 ];
 
 const username = "dineshch";
-
+const handleClick = (video_id, navigation) => {
+  fetch(`https://damp-refuge-17780.herokuapp.com/getvideo/${video_id}`)
+    .then((response) => response.json())
+    .then((responseJson) => {
+      console.log(
+        "konsa hai yeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+        responseJson
+      );
+      navigation.navigate("videoDetails", { videoDetailsInfo: responseJson });
+    });
+};
 export default function UserProfile({ navigation }) {
   const [state, dispatch] = useReducer(reducer, initialState);
 
@@ -67,36 +81,51 @@ export default function UserProfile({ navigation }) {
     fetch(`https://damp-refuge-17780.herokuapp.com/getuser/${username}`)
       .then((response) => response.json())
       .then((responseJson) => {
-        console.log(responseJson[0]);
-        console.log(responseJson[0].liked)
-        dispatch({ type: "FETCH_DATA", payload: responseJson[0]});
+        console.log(
+          "hihdsfidashfiadshfiafhidfh_________________________________________"
+        );
+        console.log(responseJson[0].liked);
+        dispatch({ type: "FETCH_DATA", payload: responseJson });
       })
       .catch((error) => {
         dispatch({ type: "ERROR" });
       });
   }, []);
+  if (state.loading) {
+    return (
+      <View
+        style={{
+          flex: 1,
+          backgroundColor: "white",
+          justifyContent: "center",
+          alignContent: "center",
+        }}
+      >
+        <ActivityIndicator></ActivityIndicator>
+      </View>
+    );
+  } else {
+    return (
+      <View style={styles.container}>
+        <ScrollView>
+          <View style={{ marginTop: defaultHeight }}>
+            <ProfileImageComponent
+              imageUrl={
+                "https://lh3.googleusercontent.com/proxy/ErDRclXNJAML1EoOqTyjsgnvbJTJNrGs64y5TkEWJYFJhU1kOq8G8Y1EktNot_Fx5twoYJzcDXlAs-tJQ6Xe2wM_nACJuHTWs4oJA8F8V_II5rt3EYumnoYsS38"
+              }
+            />
+          </View>
 
-  return (
-    <View style={styles.container}>
-      <ScrollView>
-        <View style={{ marginTop: defaultHeight }}>
-          <ProfileImageComponent
-            imageUrl={
-              "https://lh3.googleusercontent.com/proxy/ErDRclXNJAML1EoOqTyjsgnvbJTJNrGs64y5TkEWJYFJhU1kOq8G8Y1EktNot_Fx5twoYJzcDXlAs-tJQ6Xe2wM_nACJuHTWs4oJA8F8V_II5rt3EYumnoYsS38"
-            }
-          />
-        </View>
+          <View style={styles.infoContainer}>
+            <Text style={[styles.text, { fontWeight: "200", fontSize: 30 }]}>
+              {state.data[0].Username}
+            </Text>
+            <Text style={[styles.text, { fontWeight: "200", fontSize: 15 }]}>
+              {state.data[0].Email_id}
+            </Text>
+          </View>
 
-        <View style={styles.infoContainer}>
-          <Text style={[styles.text, { fontWeight: "200", fontSize: 30 }]}>
-            {state.data.Username}
-          </Text>
-          <Text style={[styles.text, { fontWeight: "200", fontSize: 15 }]}>
-            {state.data.Email_id}
-          </Text>
-        </View>
-
-        {/* <View style={styles.statsContainer}>
+          {/* <View style={styles.statsContainer}>
           <View style={styles.statusBox}>
             <Text style={[styles.text, { fontSize: 24 }]}>483</Text>
             <Text style={[styles.text, styles.subText]}>Liked</Text>
@@ -116,96 +145,107 @@ export default function UserProfile({ navigation }) {
           </View>
         </View> */}
 
-        <View style={{ marginTop: 20 }}>
-          <Text
-            style={[
-              styles.subText,
-              {
-                marginLeft: 15,
-                fontSize: 17,
-                color: "#52575D",
-                marginBottom: 10,
-              },
-            ]}
-          >
-            Liked videos
-          </Text>
-          <Text>{state.data.liked[0].video_id}</Text>
-          <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-            {liked.map((video) => {
-              return (
-                <TouchableOpacity
-                  onPress={() => navigation.navigate("videoDetails")}
-                >
-                  <View style={styles.mediaImageContainer} key={video.video_id}>
-                    <Image
-                      resizeMode="cover"
-                      style={styles.image}
-                      source={{
-                        uri: video.video_url,
-                      }}
-                    ></Image>
-                  </View>
-                </TouchableOpacity>
-              );
-            })}
-          </ScrollView>
-        </View>
-
-        <View style={{ marginTop: 20 }}>
-          <Text
-            style={[
-              styles.subText,
-              {
-                marginLeft: 15,
-                fontSize: 17,
-                color: "#52575D",
-                marginBottom: 10,
-              },
-            ]}
-          >
-            Favourite videos
-          </Text>
-          <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-            <TouchableOpacity
-              onPress={() => navigation.navigate("videoDetails")}
+          <View style={{ marginTop: 20 }}>
+            <Text
+              style={[
+                styles.subText,
+                {
+                  marginLeft: 15,
+                  fontSize: 17,
+                  color: "#52575D",
+                  marginBottom: 10,
+                },
+              ]}
             >
+              Liked videos
+            </Text>
+            <ScrollView
+              horizontal={true}
+              showsHorizontalScrollIndicator={false}
+            >
+              {state.data.map((userDetail) => {
+                return userDetail.liked.map((like) => {
+                  return (
+                    <TouchableOpacity
+                      onPress={() => handleClick(like.video_id, navigation)}
+                    >
+                      <View
+                        style={styles.mediaImageContainer}
+                        key={like.video_id}
+                      >
+                        <Image
+                          resizeMode="cover"
+                          style={styles.image}
+                          source={{
+                            uri: like.video_url,
+                          }}
+                        ></Image>
+                      </View>
+                    </TouchableOpacity>
+                  );
+                });
+              })}
+            </ScrollView>
+          </View>
+
+          <View style={{ marginTop: 20 }}>
+            <Text
+              style={[
+                styles.subText,
+                {
+                  marginLeft: 15,
+                  fontSize: 17,
+                  color: "#52575D",
+                  marginBottom: 10,
+                },
+              ]}
+            >
+              Favourite videoss
+            </Text>
+            <ScrollView
+              horizontal={true}
+              showsHorizontalScrollIndicator={false}
+            >
+              <TouchableOpacity
+                onPress={() => navigation.navigate("videoDetails")}
+              >
+                <View style={styles.mediaImageContainer}>
+                  <ImageBackground
+                    resizeMode="cover"
+                    style={styles.image}
+                    source={{
+                      uri:
+                        "https://naaniz.com/wp-content/uploads/2018/11/Vada-Pav.jpg",
+                    }}
+                  ></ImageBackground>
+                </View>
+              </TouchableOpacity>
               <View style={styles.mediaImageContainer}>
-                <ImageBackground
+                <Image
                   resizeMode="cover"
                   style={styles.image}
                   source={{
                     uri:
                       "https://naaniz.com/wp-content/uploads/2018/11/Vada-Pav.jpg",
                   }}
-                ></ImageBackground>
+                ></Image>
               </View>
-            </TouchableOpacity>
-            <View style={styles.mediaImageContainer}>
-              <Image
-                resizeMode="cover"
-                style={styles.image}
-                source={{
-                  uri:
-                    "https://naaniz.com/wp-content/uploads/2018/11/Vada-Pav.jpg",
-                }}
-              ></Image>
-            </View>
-            <View style={styles.mediaImageContainer}>
-              <Image
-                resizeMode="cover"
-                style={styles.image}
-                source={{
-                  uri:
-                    "https://naaniz.com/wp-content/uploads/2018/11/Vada-Pav.jpg",
-                }}
-              ></Image>
-            </View>
-          </ScrollView>
-        </View>
-      </ScrollView>
-    </View>
-  );
+              <View style={styles.mediaImageContainer}>
+                <Image
+                  resizeMode="cover"
+                  style={styles.image}
+                  source={{
+                    uri:
+                      "https://naaniz.com/wp-content/uploads/2018/11/Vada-Pav.jpg",
+                  }}
+                ></Image>
+              </View>
+            </ScrollView>
+          </View>
+        </ScrollView>
+      </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
