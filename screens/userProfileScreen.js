@@ -18,7 +18,7 @@ export default function UserProfile() {
   return (
     <View style={styles.container}>
       <ScrollView>
-        <View style={{ marginTop: defaultHeight + 50 }}>
+        <View style={{ marginTop: defaultHeight }}>
           <ProfileImageComponent
             imageUrl={
               "https://lh3.googleusercontent.com/proxy/ErDRclXNJAML1EoOqTyjsgnvbJTJNrGs64y5TkEWJYFJhU1kOq8G8Y1EktNot_Fx5twoYJzcDXlAs-tJQ6Xe2wM_nACJuHTWs4oJA8F8V_II5rt3EYumnoYsS38"
@@ -35,7 +35,7 @@ export default function UserProfile() {
           </Text>
         </View>
 
-        <View style={styles.statsContainer}>
+        {/* <View style={styles.statsContainer}>
           <View style={styles.statusBox}>
             <Text style={[styles.text, { fontSize: 24 }]}>483</Text>
             <Text style={[styles.text, styles.subText]}>Liked</Text>
@@ -53,7 +53,7 @@ export default function UserProfile() {
             <Text style={[styles.text, { fontSize: 24 }]}>4800</Text>
             <Text style={[styles.text, styles.subText]}>Favourite</Text>
           </View>
-        </View>
+        </View> */}
 
         <View style={{ marginTop: 20 }}>
           <Text
