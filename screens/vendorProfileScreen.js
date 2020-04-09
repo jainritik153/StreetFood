@@ -154,13 +154,15 @@ export default function VendorProfileScreen({ navigation }) {
               }}
               imageStyle={{ borderRadius: 10 }}
             >
-              <TouchableOpacity
+             
+                <View style={styles.detailsContainer}>
+                <TouchableOpacity
                 onPress={() => navigation.navigate("videoDetails")}
               >
-                <View style={styles.detailsContainer}>
                   <Text style={styles.title}>
                     Dish Name with some description..
                   </Text>
+                </TouchableOpacity>
                   <Text style={styles.subtitle}>Vendor_Name </Text>
                   <View
                     style={{ flexDirection: "row", alignItems: "flex-start" }}
@@ -169,7 +171,6 @@ export default function VendorProfileScreen({ navigation }) {
                     <Text style={styles.location}>View location</Text>
                   </View>
                 </View>
-              </TouchableOpacity>
             </ImageBackground>
           </View>
         ))}

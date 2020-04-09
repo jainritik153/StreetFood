@@ -8,8 +8,8 @@ export default function Card({
   customOnPressForVendorProfile,
   customOnPressForComment,
   customOnPressForReview,
-  cardData,
-  videoStats,
+  videoInfo,
+  vendorInfo
 }) {
   return (
     <View style={styles.container}>
@@ -30,14 +30,14 @@ export default function Card({
               style={{ marginTop: 5, fontSize: 15, fontWeight: "bold" }}
               onPress={customOnPressForVendorProfile}
             >
-              {cardData.Vendor_name}
+              {vendorInfo.Vendor_name}
             </Text>
           </TouchableOpacity>
           <Text style={{ fontSize: 11, color: "grey" }}>
-            {cardData.Followers}Followers
+            {vendorInfo.Followers} Followers
           </Text>
           <Text style={{ fontSize: 11, color: "grey", fontStyle: "italic" }}>
-            {cardData.location}
+            {vendorInfo.Location}
           </Text>
         </View>
         <View style={{ flex: 1, flexDirection: "row" }}>
@@ -61,7 +61,7 @@ export default function Card({
       <View style={styles.videoContainer}>
         <Image
           source={{
-            uri: videoStats.url,
+            uri: videoInfo.Video_url,
           }}
           style={{ height: undefined, flex: 1 }}
         ></Image>
@@ -75,7 +75,7 @@ export default function Card({
             >
               <EvilIcons name="like" size={35} color="grey" />
               <Text style={{ color: "grey", fontSize: 13 }}>
-                {videoStats.likes}
+                  {videoInfo.Likes}
               </Text>
             </TouchableOpacity>
           </View>
@@ -88,7 +88,7 @@ export default function Card({
                 style={{ color: "grey", fontSize: 13 }}
                 onPress={customOnPressForComment}
               >
-                {videoStats.Comments}
+                 {videoInfo.No_of_comments}
               </Text>
             </TouchableOpacity>
           </View>
@@ -101,7 +101,7 @@ export default function Card({
                 style={{ marginLeft: 5, color: "grey", fontSize: 13 }}
                 onPress={customOnPressForReview}
               >
-                {videoStats.Review}
+                {videoInfo.No_of_reviews}
               </Text>
             </TouchableOpacity>
           </View>
