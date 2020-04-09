@@ -1,4 +1,4 @@
-import React from "react";
+import React,{ useState ,useReducer,useEffect}  from "react";
 import {
   View,
   Text,
@@ -11,10 +11,60 @@ import {
 import ProfileImageComponent from "../components/ProfileComponent/profileImageComponent";
 import { SafeAreaView } from "react-native-safe-area-context";
 import VideoComponent from "../components/ExploreComponent/exploreVideoCard";
+import axios from 'axios'
 
 const defaultHeight = StatusBar.currentHeight;
 
+
+const reducer=(state,action)=>{
+  switch(action.type){
+    case 'FETCH_DATA':
+      return{
+        loading:false,
+        data:action.payload,
+        error:""
+      }
+    case 'ERROR':
+      return{
+        loading:false,
+        data:{},
+        error:"Something went wrong"
+      }  
+  }
+}
+
+const initialState={
+  loading:true,
+  data:{},
+  error:""
+}
+
+const liked=[
+  {video_id:"1",video_url:"https://naaniz.com/wp-content/uploads/2018/11/Vada-Pav.jpg"},
+  {video_id:"2",video_url:"https://naaniz.com/wp-content/uploads/2018/11/Vada-Pav.jpg"},
+  {video_id:"3",video_url:"https://naaniz.com/wp-content/uploads/2018/11/Vada-Pav.jpg"},
+  {video_id:"4",video_url:"https://naaniz.com/wp-content/uploads/2018/11/Vada-Pav.jpg"}
+]
+
+const username="Manali"
+
 export default function UserProfile() {
+
+  const [state,dispatch] = useReducer(reducer,initialState)
+
+  useEffect(() => {
+		fetch(`https://damp-refuge-17780.herokuapp.com/getuser/${username}`)
+      .then(response =>response.json())
+      .then(responseJson=>{
+        console.log("hihdsfidashfiadshfiafhidfh_________________________________________")
+        console.log(responseJson[0].Location)
+				dispatch({ type: 'FETCH_DATA', payload: responseJson[0] })
+      })
+			.catch(error => {
+				dispatch({ type: 'ERROR' })
+			})
+	},[])
+
   return (
     <View style={styles.container}>
       <ScrollView>
@@ -28,10 +78,10 @@ export default function UserProfile() {
 
         <View style={styles.infoContainer}>
           <Text style={[styles.text, { fontWeight: "200", fontSize: 30 }]}>
-            User Name
+            {state.data.Username}
           </Text>
           <Text style={[styles.text, { fontWeight: "200", fontSize: 15 }]}>
-            email@gmail.com
+            {state.data.Email_id}
           </Text>
         </View>
 
@@ -63,45 +113,29 @@ export default function UserProfile() {
                 marginLeft: 15,
                 fontSize: 17,
                 color: "#52575D",
-                marginBottom: 10,
-                borderBottomColor: "black",
-                borderBottomWidth: 0.2
+                marginBottom: 10
               }
             ]}
           >
             Liked videos
           </Text>
           <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-            <View style={styles.mediaImageContainer}>
-              <ImageBackground
-                resizeMode="cover"
-                style={styles.image}
-                source={{
-                  uri:
-                    "https://naaniz.com/wp-content/uploads/2018/11/Vada-Pav.jpg"
-                }}
-              ></ImageBackground>
-            </View>
-            <View style={styles.mediaImageContainer}>
-              <Image
-                resizeMode="cover"
-                style={styles.image}
-                source={{
-                  uri:
-                    "https://naaniz.com/wp-content/uploads/2018/11/Vada-Pav.jpg"
-                }}
-              ></Image>
-            </View>
-            <View style={styles.mediaImageContainer}>
-              <Image
-                resizeMode="cover"
-                style={styles.image}
-                source={{
-                  uri:
-                    "https://naaniz.com/wp-content/uploads/2018/11/Vada-Pav.jpg"
-                }}
-              ></Image>
-            </View>
+            {
+              liked.map(video=>{
+                return(
+                  <View style={styles.mediaImageContainer} key={video.video_id}>
+                    <Image
+                      resizeMode="cover"
+                      style={styles.image}
+                      source={{
+                        uri:
+                          video.video_url
+                      }}
+                    ></Image>
+                  </View>
+                )
+              })
+            }
           </ScrollView>
         </View>
 
@@ -114,8 +148,6 @@ export default function UserProfile() {
                 fontSize: 17,
                 color: "#52575D",
                 marginBottom: 10,
-                borderBottomColor: "black",
-                borderBottomWidth: 0.2
               }
             ]}
           >
