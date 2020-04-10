@@ -7,6 +7,7 @@ import {
   TextInput,
   ColorPropType,
   ScrollView,
+  ActivityIndicator
 } from "react-native";
 
 import Header from "../components/HeaderComponent/header";
@@ -44,6 +45,7 @@ export default function NearMeScreen({ navigation }) {
     fetch(`https://damp-refuge-17780.herokuapp.com/nearme/`)
       .then((response) => response.json())
       .then((responseJson) => {
+
         dispatch({ type: "FETCH_DATA", payload: responseJson });
       })
       .catch((error) => {
@@ -51,6 +53,21 @@ export default function NearMeScreen({ navigation }) {
       });
   }, []);
 
+  if (state.loading) {
+    return (
+      <View
+        style={{
+          flex: 1,
+          backgroundColor: "white",
+          justifyContent: "center",
+          alignContent: "center",
+        }}
+      >
+        <ActivityIndicator></ActivityIndicator>
+      </View>
+    );
+  } 
+  else{
   return (
     <View style={{ flex: 1, backgroundColor: "white" }}>
       <Header>
@@ -63,11 +80,12 @@ export default function NearMeScreen({ navigation }) {
               <Card
                 key={videoInfo.video_id}
                 customOnPressForVendorProfile={() =>
-                  navigation.navigate("vendorProfileScreen")
+                  navigation.navigate("vendorProfileScreen",{vendorName:vendorInfo.Vendor_name})
                 }
-                customOnPressForComment={() =>
-                  navigation.navigate("commentScreen")
-                }
+                customOnPressForComment={() =>{
+                  console.log(videoInfo.Comments);
+                  navigation.navigate("commentScreen",{videoId:videoInfo.video_id})
+                }}
                 customOnPressForReview={() =>
                   navigation.navigate("reviewScreen")
                 }
@@ -80,6 +98,7 @@ export default function NearMeScreen({ navigation }) {
       </ScrollView>
     </View>
   );
+  }
 }
 
 const styles = StyleSheet.create({});

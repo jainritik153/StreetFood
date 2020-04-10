@@ -49,13 +49,16 @@ const initialState = {
   error: "",
 };
 
-const Vendorname = "JAI AMBE";
 
-export default function VendorProfileScreen({ navigation }) {
+
+export default function VendorProfileScreen({ navigation ,route}) {
+
+  const {vendorName} = route.params
+
   const [state, dispatch] = useReducer(reducer, initialState);
   console.log("call");
   useEffect(() => {
-    fetch(`https://damp-refuge-17780.herokuapp.com/getvendor/${Vendorname}`)
+    fetch(`https://damp-refuge-17780.herokuapp.com/getvendor/${vendorName}`)
       .then((response) => response.json())
       .then((responseJson) => {
         console.log(
