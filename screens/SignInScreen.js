@@ -1,6 +1,7 @@
 import Color from "../assets/color";
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { TouchableOpacity } from "react-native-gesture-handler";
+
 import {
   StyleSheet,
   Text,
@@ -14,10 +15,46 @@ import {
   KeyboardAvoidingView,
   ColorPropType,
   Button,
+  AsyncStorage,
 } from "react-native";
 import signUpScreen from "./SignUpScreen";
 
+const postLoginData = (navigation, LoginInfo) => {
+  try {
+    console.log("inside func");
+    console.log(LoginInfo);
+    let rspns = fetch("https://damp-refuge-17780.herokuapp.com/user/login", {
+      method: "POST",
+
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(LoginInfo),
+    })
+      .then((resp) => resp.json())
+      .then((data) => {
+        if (data.message == "Auth Succeedded") {
+          AsyncStorage.setItem("token", data.token);
+          console.log("response token from fetch", data.token);
+          navigation.navigate("Welcome");
+        } else {
+          console.log(error.message);
+        }
+      });
+  } catch (e) {
+    console.log(e);
+  }
+};
+
 export default function SignInScreen({ navigation }) {
+  const [userName, setUserName] = useState("");
+  const [password, setPassword] = useState("");
+
+  const LoginInfo = {
+    Username: userName,
+    Password: password,
+  };
   return (
     <View style={styles.container}>
       <View style={styles.logocontainer}>
@@ -25,7 +62,9 @@ export default function SignInScreen({ navigation }) {
       </View>
       <View style={styles.subcontainer}>
         <TextInput
-          placeholder="Enter emailid"
+          placeholder="Enter UserName"
+          onChangeText={(userName) => setUserName(userName)}
+          defaultValue={userName}
           returnKeyType="next"
           autoCorrect={false}
           keyboardType="email-address"
@@ -33,6 +72,8 @@ export default function SignInScreen({ navigation }) {
         ></TextInput>
         <TextInput
           placeholder="Enter password"
+          onChangeText={(password) => setPassword(password)}
+          defaultValue={password}
           returnKeyType="go"
           secureTextEntry
           autoCorrect={false}
@@ -40,7 +81,7 @@ export default function SignInScreen({ navigation }) {
         ></TextInput>
         <TouchableOpacity
           style={styles.buttonContainer}
-          onPress={() => navigation.navigate("Welcome")}
+          onPress={() => postLoginData(navigation, LoginInfo)}
         >
           <Button style={styles.textButton} title="Sign In" />
         </TouchableOpacity>
