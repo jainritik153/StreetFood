@@ -188,7 +188,7 @@ export default function UserProfile({ navigation }) {
             </ScrollView>
           </View>
 
-          <View style={{ marginTop: 20 }}>
+          {/* <View style={{ marginTop: 20 }}>
             <Text
               style={[
                 styles.subText,
@@ -241,7 +241,7 @@ export default function UserProfile({ navigation }) {
                 ></Image>
               </View>
             </ScrollView>
-          </View>
+          </View> */}
         </ScrollView>
       </View>
     );

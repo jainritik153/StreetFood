@@ -33,13 +33,23 @@ export default function VideoDetails({ route, navigation }) {
       <View style={styles.desContainer}>
         <Text style={styles.description}>{videoDetailsInfo.Dish_name}</Text>
         <View style={styles.price}>
-          <Text style={{ fontSize: 18, fontWeight: "bold" }}>₹ 100</Text>
+          <Text style={{ fontSize: 18, fontWeight: "bold" }}>₹ {videoDetailsInfo.Price}</Text>
         </View>
       </View>
 
-      <Text style={{ color: "grey", marginLeft: 5, marginTop: 5 }}>
+      <View>
+		<Text style={styles.heading}>Description</Text>
+    		<Text style={{margin:5,color:"grey"}}>
+				{videoDetailsInfo.Description}
+        	</Text>
+      </View>
+
+      <Text style={styles.heading}>
         Ingredients
       </Text>
+
+     
+
       <View
         style={{
           flexDirection: "row",
@@ -49,27 +59,30 @@ export default function VideoDetails({ route, navigation }) {
           marginTop: 5,
         }}
       >
-        <Text style={styles.incgredients}>Pav</Text>
-        <Text style={styles.incgredients}>Potato</Text>
-        <Text style={styles.incgredients}>Onion</Text>
-        <Text style={styles.incgredients}>Green Chutney</Text>
-      </View>
+         {
+        videoDetailsInfo.Ingredients.map(item=>{
+          return(
+            <Text style={styles.incgredients}>{item}</Text>
+          )
+          })
+        }
+      </View> 
 
-      <Text style={{ color: "grey", marginLeft: 5, marginTop: 5 }}>
+      <Text style={styles.heading}>
         Rating and Reviews
       </Text>
 
       <View style={styles.ratingContainer}>
         <View style={styles.rating}>
           <ProgressCircle
-            percent={60}
+            percent={videoDetailsInfo.Hygiene}
             radius={50}
             borderWidth={8}
             color="#FC427B"
             shadowColor="#d1d8e0"
             bgColor="white"
           >
-            <Text style={{ fontSize: 18, fontWeight: "bold" }}>{"60%"}</Text>
+            <Text style={{ fontSize: 18, fontWeight: "bold" }}>{`${videoDetailsInfo.Hygiene}%`}</Text>
           </ProgressCircle>
           <Text style={{ marginTop: 5, fontSize: 15, fontWeight: "bold" }}>
             Hygenic
@@ -77,14 +90,14 @@ export default function VideoDetails({ route, navigation }) {
         </View>
         <View style={styles.rating}>
           <ProgressCircle
-            percent={70}
+            percent={videoDetailsInfo.Taste}
             radius={50}
             borderWidth={8}
             color="#FC427B"
             shadowColor="#d1d8e0"
             bgColor="white"
           >
-            <Text style={{ fontSize: 18, fontWeight: "bold" }}>{"70%"}</Text>
+            <Text style={{ fontSize: 18, fontWeight: "bold" }}>{`${videoDetailsInfo.Taste}%`}</Text>
           </ProgressCircle>
           <Text style={{ marginTop: 5, fontSize: 15, fontWeight: "bold" }}>
             Taste
@@ -92,21 +105,20 @@ export default function VideoDetails({ route, navigation }) {
         </View>
         <View style={styles.rating}>
           <ProgressCircle
-            percent={65}
+            percent={videoDetailsInfo.Overall_rating}
             radius={50}
             borderWidth={8}
             color="#FC427B"
             shadowColor="#d1d8e0"
             bgColor="white"
           >
-            <Text style={{ fontSize: 18, fontWeight: "bold" }}>{"65%"}</Text>
+            <Text style={{ fontSize: 18, fontWeight: "bold" }}>{`${videoDetailsInfo.Overall_rating}%`}</Text>
           </ProgressCircle>
           <Text style={{ marginTop: 5, fontSize: 15, fontWeight: "bold" }}>
             Overall
           </Text>
         </View>
       </View>
-
       <TouchableOpacity>
         <View style={styles.location}>
           <Text style={{ fontSize: 15, fontWeight: "bold", color: "white" }}>
@@ -126,6 +138,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
   },
   videoContainer: {
+    marginTop:8,
     height: 400,
     elevation: 100,
   },
@@ -136,12 +149,13 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     paddingHorizontal: 20,
     flexWrap: "wrap",
-    elevation: 10,
+    elevation: 8,
     backgroundColor: "#82589F",
     color: "white",
     fontWeight: "bold",
   },
   desContainer: {
+    marginTop:8,
     flexDirection: "row",
     flex: 1,
     alignItems: "center",
@@ -150,8 +164,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 15,
     marginRight: 15,
-    borderTopLeftRadius: 15,
-    borderBottomRightRadius: 15,
+    borderRadius:15,
     elevation: 10,
     backgroundColor: "white",
   },
@@ -168,12 +181,11 @@ const styles = StyleSheet.create({
     marginVertical: 5,
   },
   rating: {
-    marginHorizontal: 5,
+    marginHorizontal:5,
     paddingVertical: 10,
     backgroundColor: "white",
-    borderTopLeftRadius: 15,
-    borderBottomRightRadius: 15,
-    elevation: 10,
+    borderRadius:10,
+    elevation: 5,
     alignItems: "center",
     flexDirection: "column",
   },
@@ -184,7 +196,13 @@ const styles = StyleSheet.create({
     marginVertical: 15,
     borderRadius: 200,
     alignItems: "center",
-    elevation: 10,
+    elevation: 5,
     backgroundColor: "#44bd32",
   },
+  heading:{
+     color: "grey",
+      marginLeft: 5,
+      marginTop: 5,
+      fontWeight:"bold" 
+  }
 });

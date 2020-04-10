@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useReducer } from "react";
 import {
   View,
   Text,
@@ -13,7 +13,10 @@ import {
 import { Ionicons, MaterialIcons } from "react-native-vector-icons";
 import Color from "../assets/color";
 import color from "../assets/color";
+import ProfileImageComponent from "../components/ProfileComponent/profileImageComponent";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
+const HEADER_HEIGHT = Platform.OS == "ios" ? 115 : 60 + StatusBar.currentHeight;
 
 const images = [
   { id: 1, uri: "https://naaniz.com/wp-content/uploads/2018/11/Vada-Pav.jpg" },
@@ -23,13 +26,70 @@ const images = [
   { id: 5, uri: "https://naaniz.com/wp-content/uploads/2018/11/Vada-Pav.jpg" },
 ];
 
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "FETCH_DATA":
+      return {
+        loading: false,
+        data: action.payload,
+        error: "",
+      };
+    case "ERROR":
+      return {
+        loading: false,
+        data: [],
+        error: "Something went wrong",
+      };
+  }
+};
+
+const initialState = {
+  loading: true,
+  data: [],
+  error: "",
+};
+
+const Vendorname = "JAI AMBE";
+
 export default function VendorProfileScreen({ navigation }) {
+  const [state, dispatch] = useReducer(reducer, initialState);
+  console.log("call");
+  useEffect(() => {
+    fetch(`https://damp-refuge-17780.herokuapp.com/getvendor/${Vendorname}`)
+      .then((response) => response.json())
+      .then((responseJson) => {
+        console.log(
+          "hihdsfidashfiadshfiafhidfh_________________________________________"
+        );
+        console.log(responseJson);
+        dispatch({ type: "FETCH_DATA", payload: responseJson });
+      })
+      .catch((error) => {
+        dispatch({ type: "ERROR" });
+      });
+  }, []);
+
+  console.log("hiiii", state.data.Videos);
+  if (state.loading) {
+    return (
+      <View
+        style={{
+          flex: 1,
+          backgroundColor: Color.main_color,
+          justifyContent: "center",
+          alignContent: "center",
+        }}
+      >
+        <ActivityIndicator></ActivityIndicator>
+      </View>
+    );
+  } else {
     return (
       <SafeAreaView style={styles.container}>
         <ScrollView showsVerticalScrollIndicator={false}>
           <ProfileImageComponent
             imageUrl={
-              "https://i.pinimg.com/originals/d4/d4/ee/d4d4ee8b3f45e22fa9306a1255c76d5c.jpg "
+              state.data[0].Profile_URL
             }
           />
 
@@ -70,7 +130,7 @@ export default function VendorProfileScreen({ navigation }) {
             </View>
           </View>
 
-          <View style={{ marginTop: 10 }}>
+          {/* <View style={{ marginTop: 10 }}>
             <Text
               style={[
                 styles.subText,
@@ -84,7 +144,7 @@ export default function VendorProfileScreen({ navigation }) {
                 },
               ]}
             >
-              Most Likedd
+              Most Liked
             </Text>
             <ScrollView
               horizontal={true}
@@ -129,7 +189,7 @@ export default function VendorProfileScreen({ navigation }) {
                 </View>
               </TouchableOpacity>
             </ScrollView>
-          </View>
+          </View> */}
 
           <Text
             style={[
@@ -170,26 +230,28 @@ export default function VendorProfileScreen({ navigation }) {
                         }
                       >
                         <Text style={styles.title}>
-                          Dish Name with some description...
+                          {videoInfo.Dish_name}
                         </Text>
                       </TouchableOpacity>
-                      <Text style={styles.subtitle}>Vendor_Name </Text>
+                      <Text style={styles.subtitle}>{vendorInfo.Shop_title} </Text>
                       <View
                         style={{
                           flexDirection: "row",
                           alignItems: "flex-start",
                         }}
                       >
-                        <Text style={styles.views}>108k views </Text>
-                        <Text style={styles.location}>View location</Text>
+                        <Text style={styles.views}>10 likes </Text>
+                      </View>
                     </View>
+                  </ImageBackground>
                 </View>
-            </ImageBackground>
-          </View>
-        ))}
-      </ScrollView>
-    </SafeAreaView>
-  );
+              );
+            });
+          })}
+        </ScrollView>
+      </SafeAreaView>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
