@@ -74,6 +74,8 @@ const handleClick = (video_id, navigation) => {
       navigation.navigate("videoDetails", { videoDetailsInfo: responseJson });
     });
 };
+
+
 export default function UserProfile({ navigation }) {
   const [state, dispatch] = useReducer(reducer, initialState);
 

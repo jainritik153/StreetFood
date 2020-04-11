@@ -37,7 +37,10 @@ const postLoginData = (navigation, LoginInfo) => {
         if (data.message == "Auth Succeedded") {
           AsyncStorage.setItem("token", data.token);
           console.log("response token from fetch", data.token);
-          navigation.navigate("Welcome");
+          navigation.reset({
+            index:0,
+            routes:[{name:"Welcome"}]
+          });
         } else {
           console.log(error.message);
         }

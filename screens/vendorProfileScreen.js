@@ -267,7 +267,7 @@ const styles = StyleSheet.create({
   },
   subText: {
     fontSize: 12,
-    color: "#AAB5BF",
+    color: "grey",
     textTransform: "uppercase",
     fontWeight: "500",
   },
@@ -300,7 +300,7 @@ const styles = StyleSheet.create({
   },
 
   imageConatiner: {
-    elevation: 100,
+    
     height: 400,
     margin: 12,
   },

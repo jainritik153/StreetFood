@@ -38,8 +38,9 @@ const initialState = {
   error: "",
 };
 
-export default function NearMeScreen({ navigation }) {
+export default function NearMeScreen({ navigation ,route}) {
   const [state, dispatch] = useReducer(reducer, initialState);
+  
 
   useEffect(() => {
     fetch(`https://damp-refuge-17780.herokuapp.com/nearme/`)
@@ -87,7 +88,7 @@ export default function NearMeScreen({ navigation }) {
                   navigation.navigate("commentScreen",{videoId:videoInfo.video_id})
                 }}
                 customOnPressForReview={() =>
-                  navigation.navigate("reviewScreen")
+                  navigation.navigate("reviewScreen") 
                 }
                 vendorInfo={vendorInfo}
                 videoInfo={videoInfo}

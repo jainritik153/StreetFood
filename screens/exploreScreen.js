@@ -1,4 +1,4 @@
-import React from "react";
+import React ,{useEffect,useReducer}from "react";
 import {
   View,
   Text,
@@ -7,6 +7,7 @@ import {
   Image,
   StatusBar,
   TextInput,
+  ActivityIndicator
 } from "react-native";
 import Color from "../assets/color";
 import Icon from "react-native-vector-icons/Ionicons";
@@ -37,8 +38,64 @@ const images = [
   { id: 5, uri: "https://naaniz.com/wp-content/uploads/2018/11/Vada-Pav.jpg" },
 ];
 
+const reducer=(state,action)=>{
+  switch (action.type) {
+    case 'FETCH_EXPLORE':
+        return{
+          loading:false,
+          data:action.payload,
+          error:""
+        }
+        break;
+    case 'FETCH_ERROR':
+        return{
+          loading:false,
+          data:[],
+          error:"Something went wrong"
+        }    
+        break
+  }
+}
+
+const initialState={
+  loading:true,
+  data:[],
+  error:"",
+}
+
 //changed class component to function component
 function exploreScreen({ navigation }) {
+
+  const [state,dispatch] = useReducer(reducer,initialState);
+
+   useEffect(() => {
+    fetch(`https://damp-refuge-17780.herokuapp.com/nearme/`)
+      .then((response) => response.json())
+      .then((responseJson) => {
+
+        dispatch({ type: "FETCH_EXPLORE", payload: responseJson });
+      })
+      .catch((error) => {
+        dispatch({ type: "FETCH_ERROR" });
+      });
+  }, []);
+
+  if (state.loading) {
+    return (
+      <View
+        style={{
+          flex: 1,
+          backgroundColor: "white",
+          justifyContent: "center",
+          alignContent: "center",
+        }}
+      >
+        <ActivityIndicator></ActivityIndicator>
+      </View>
+    );
+  } 
+
+  else{
   return (
     <View style={styles.container}>
       <View style={styles.categoryListContainer}>
@@ -67,85 +124,32 @@ function exploreScreen({ navigation }) {
               flexWrap: "wrap",
             }}
           >
-            <TouchableOpacity
-              onPress={() => navigation.navigate("videoDetails")}
-            >
-              <ExploreCard
-                imageUrl={
-                  "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcScbCH9nEkq0wlDTl6y1Yfksd_HHHdeO8zC48IS24uz4l6lfi0n"
-                }
-              />
-            </TouchableOpacity>
-            <ExploreCard
-              imageUrl={
-                "https://naaniz.com/wp-content/uploads/2018/11/Vada-Pav.jpg"
-              }
-            />
+          {
+            state.data.map(vendorInfo=>{
+              return vendorInfo.Videostats.map(videoInfo=>{
+                return(
+                  // <TouchableOpacity
+                  //   onPress={() => navigation.navigate("videoDetails")}
+                  // >
+                    <ExploreCard
+                      key={videoInfo.video_id}
+                      imageUrl={
+                        videoInfo.Video_url
+                      }
+                    />
+                  //  </TouchableOpacity>
+                )
+              })
+            })
+          }
+          
           </View>
-          <View>
-            <View
-              style={[styles.mediaImageContainer, { width: 350, height: 230 }]}
-            >
-              <Image
-                resizeMode="cover"
-                style={styles.image}
-                source={{
-                  uri:
-                    "https://cdn.cnn.com/cnnnext/dam/assets/161201144840-5-mumbai-street-food-chutney-sandwich.jpg",
-                }}
-              ></Image>
-            </View>
-          </View>
-          <View style={{ flexDirection: "row" }}>
-            <View
-              style={[styles.mediaImageContainer, { width: 175, height: 300 }]}
-            >
-              <Image
-                resizeMode="cover"
-                style={styles.image}
-                source={{
-                  uri:
-                    "https://media-cdn.tripadvisor.com/media/photo-s/19/14/bf/33/photo0jpg.jpg",
-                }}
-              ></Image>
-            </View>
-            <View style={{ flexDirection: "column" }}>
-              <View
-                style={[
-                  styles.mediaImageContainer,
-                  { width: 175, height: 150 },
-                ]}
-              >
-                <Image
-                  resizeMode="cover"
-                  style={styles.image}
-                  source={{
-                    uri:
-                      "https://www.holidify.com/blog/wp-content/uploads/2015/09/patti-samosa.jpg",
-                  }}
-                ></Image>
-              </View>
-              <View
-                style={[
-                  styles.mediaImageContainer,
-                  { width: 175, height: 150 },
-                ]}
-              >
-                <Image
-                  resizeMode="cover"
-                  style={styles.image}
-                  source={{
-                    uri:
-                      "https://s3-eu-west-1.amazonaws.com/iya-news-prod.inyourarea.co.uk/2018/11/Greek-street-food-comes-to-Canary-Wharf-with-the-launch-of-The-Athenian-_-The-Wharf3.jpg",
-                  }}
-                ></Image>
-              </View>
-            </View>
-          </View>
+          
         </ScrollView>
       </View>
     </View>
   );
+  }
 }
 
 const styles = StyleSheet.create({
