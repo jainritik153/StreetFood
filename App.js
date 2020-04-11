@@ -130,7 +130,7 @@ function App() {
         <Stack.Screen
           name="vendorProfileScreen"
           component={vendorProfileScreen}
-          options={{ title: "Vendor Name" ,headerLeft:false}}
+          options={{ title: "Vendor Name"}}
         />
         <Stack.Screen
           name="commentScreen"

@@ -63,6 +63,18 @@ const initialState={
   error:"",
 }
 
+const handleClick = (video_id, navigation) => {
+  fetch(`https://damp-refuge-17780.herokuapp.com/getvideo/${video_id}`)
+    .then((response) => response.json())
+    .then((responseJson) => {
+      console.log(
+        "konsa hai yeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+        responseJson
+      );
+      navigation.navigate("videoDetails", { videoDetailsInfo: responseJson });
+    });
+};
+
 //changed class component to function component
 function exploreScreen({ navigation }) {
 
@@ -128,16 +140,16 @@ function exploreScreen({ navigation }) {
             state.data.map(vendorInfo=>{
               return vendorInfo.Videostats.map(videoInfo=>{
                 return(
-                  // <TouchableOpacity
-                  //   onPress={() => navigation.navigate("videoDetails")}
-                  // >
+                  <TouchableOpacity
+                    onPress={() => handleClick(videoInfo.video_id, navigation)}
+                  >
                     <ExploreCard
                       key={videoInfo.video_id}
                       imageUrl={
                         videoInfo.Video_url
                       }
                     />
-                  //  </TouchableOpacity>
+                  </TouchableOpacity>
                 )
               })
             })
