@@ -46,7 +46,11 @@ const imageURL = [
   },
 ];
 
-export default function exploreCategoryScreen({ navigation }) {
+export default function exploreCategoryScreen({ navigation ,route}) {
+
+  const {category}=route.params;
+  console.log(category);
+  
   return (
     <ScrollView>
       <View style={styles.container}>

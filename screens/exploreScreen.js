@@ -1,4 +1,4 @@
-import React ,{useEffect,useReducer}from "react";
+import React ,{useEffect,useReducer,useState}from "react";
 import {
   View,
   Text,
@@ -79,6 +79,20 @@ const handleClick = (video_id, navigation) => {
 function exploreScreen({ navigation }) {
 
   const [state,dispatch] = useReducer(reducer,initialState);
+  const [category,setCategory]=useState([]);
+
+  getCategory=()=>{
+    fetch("https://damp-refuge-17780.herokuapp.com/getcategory")
+    .then(res=>res.json())
+    .then(categoryList=>{
+      setCategory(categoryList)
+      console.log("state value category",categoryList)
+    })
+    .catch(err=>{
+      console.log("err from getcatogory ",err.message)
+    })
+  }
+
 
    useEffect(() => {
     fetch(`https://damp-refuge-17780.herokuapp.com/nearme/`)
@@ -86,6 +100,7 @@ function exploreScreen({ navigation }) {
       .then((responseJson) => {
 
         dispatch({ type: "FETCH_EXPLORE", payload: responseJson });
+        getCategory()
       })
       .catch((error) => {
         dispatch({ type: "FETCH_ERROR" });
@@ -112,14 +127,14 @@ function exploreScreen({ navigation }) {
     <View style={styles.container}>
       <View style={styles.categoryListContainer}>
         <ScrollView showsHorizontalScrollIndicator={false} horizontal={true}>
-          {categories.map((category) => (
-            <TouchableOpacity key={category.id}>
+          {category.map((categoryName,index) => (
+            <TouchableOpacity key={categoryName.id} >
               <Text
-                key={category.id}
+                key={categoryName.id}
                 style={styles.category}
-                onPress={() => navigation.navigate("exploreCategoryScreen")}
+                onPress={() => navigation.navigate("exploreCategoryScreen",{category:categoryName.Category})}
               >
-                {category.categoryName}
+                {categoryName.Category}
               </Text>
             </TouchableOpacity>
           ))}
@@ -141,6 +156,7 @@ function exploreScreen({ navigation }) {
               return vendorInfo.Videostats.map(videoInfo=>{
                 return(
                   <TouchableOpacity
+                    key={videoInfo.video_id}
                     onPress={() => handleClick(videoInfo.video_id, navigation)}
                   >
                     <ExploreCard
