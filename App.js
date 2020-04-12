@@ -24,7 +24,7 @@ import signUpScreen from "./screens/SignUpScreen";
 import SignInScreen from "./screens/SignInScreen";
 
 //import NearMe from "./screens/nearme";
-
+import mapScreen from "./screens/mapScreen"
 import NearMeScreen from "./screens/nearMeScreen";
 import ExploreScreen from "./screens/exploreScreen";
 import TrendingScreen from "./screens/trendingScreen";
@@ -159,6 +159,12 @@ function App() {
           name="videoDetails"
           component={VideoDetailsScreen}
           options={{ title: "Video Details" }}
+        />
+
+        <Stack.Screen
+          name="map"
+          component={mapScreen}
+          options={{ title: "Map" }}
         />
       </Stack.Navigator>
     </NavigationContainer>

@@ -119,7 +119,9 @@ export default function VideoDetails({ route, navigation }) {
           </Text>
         </View>
       </View>
-      <TouchableOpacity>
+      <TouchableOpacity
+        onPress={()=>navigation.navigate("map")}
+      >
         <View style={styles.location}>
           <Text style={{ fontSize: 15, fontWeight: "bold", color: "white" }}>
             View location
