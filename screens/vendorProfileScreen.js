@@ -100,7 +100,7 @@ export default function VendorProfileScreen({ navigation ,route}) {
             <Text style={[styles.text, { fontWeight: "200", fontSize: 30 }]}>
               {state.data[0].Shop_title}
             </Text>
-            <Text style={[styles.text, { color: "AEB5BC", fontSize: 14 }]}>
+            <Text style={[styles.text, { color: "grey", fontSize: 14 }]}>
               {state.data[0].Shop_subtitle}
             </Text>
           </View>

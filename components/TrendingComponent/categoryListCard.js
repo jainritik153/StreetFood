@@ -29,7 +29,7 @@ export default function CategoryListCard({ url, category, customOnPress }) {
         </View>
         <Button
           title="Show Video"
-          type="outline"
+          
           onPress={customOnPress}
           buttonStyle={{
             width: 320,

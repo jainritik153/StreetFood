@@ -170,10 +170,11 @@ export default function UserProfile({ navigation }) {
                   return (
                     <TouchableOpacity
                       onPress={() => handleClick(like.video_id, navigation)}
+                      key={like.video_id}
                     >
                       <View
                         style={styles.mediaImageContainer}
-                        key={like.video_id}
+                        
                       >
                         <Image
                           resizeMode="cover"

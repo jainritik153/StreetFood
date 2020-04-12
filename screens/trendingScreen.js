@@ -1,5 +1,5 @@
-import React from "react";
-import { View, Text, StyleSheet, ScrollView, Button } from "react-native";
+import React ,{useEffect,useReducer}from "react";
+import { View, Text, StyleSheet, ScrollView, Button,ActivityIndicator } from "react-native";
 import Header from "../components/HeaderComponent/header";
 import Color from "../assets/color";
 import Search from "../components/Search";
@@ -10,43 +10,87 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 const Stack = createStackNavigator();
 
+
+const reducer=(state,action)=>{
+  switch (action.type) {
+    case 'FETCH_CATEGORY':
+        return{
+          loading:false,
+          data:action.payload,
+          error:""
+        }
+        break;
+    case 'FETCH_ERROR':
+        return{
+          loading:false,
+          data:[],
+          error:"Something went wrong"
+        }    
+        break
+  }
+}
+
+const initialState={
+  loading:true,
+  data:[],
+  error:"",
+}
+
 //trending class component is changed to functional component
 function trendingScreen({ navigation }) {
+
+  const [state,dispatch]=useReducer(reducer,initialState);
+
+  useEffect(() => {
+     fetch(`https://damp-refuge-17780.herokuapp.com/getcategory`)
+      .then((response) => response.json())
+      .then((responseJson) => {
+
+        dispatch({ type: "FETCH_CATEGORY", payload: responseJson });
+
+      })
+      .catch((error) => {
+        dispatch({ type: "FETCH_ERROR" });
+      });
+  }, []); 
+
+   if (state.loading) {
+    return (
+      <View
+        style={{
+          flex: 1,
+          backgroundColor: "white",
+          justifyContent: "center",
+          alignContent: "center",
+        }}
+      >
+        <ActivityIndicator></ActivityIndicator>
+      </View>
+    );
+  } 
+  else{
+
   return (
     <View style={{ flex: 1, backgroundColor: Color.screen_bg_color }}>
       <ScrollView style={styles.scrollview}>
-        <CategoryListCard
-          category="Chinese"
-          url={
-            "https://images.unsplash.com/photo-1557682224-5b8590cd9ec5?ixlib=rb-1.2.1&w=1000&q=80"
-          }
-          customOnPress={() => navigation.navigate("trendingVideoScreen")}
-        ></CategoryListCard>
-
-        <CategoryListCard
-          category="South Indian"
-          url={
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSyLLFqbRDmD-imxGBvcu2d4o8p48Tqr9HJC0CYQ5fECifd6NXB"
-          }
-          customOnPress={() => navigation.navigate("trendingVideoScreen")}
-        ></CategoryListCard>
-        <CategoryListCard
-          category="Italian"
-          url={
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1c79rHRO3f_EMA-Uw-pWFge_iXxjpsB0Mil2rDsolzB9V8j7p"
-          }
-          customOnPress={() => navigation.navigate("trendingVideoScreen")}
-        ></CategoryListCard>
-        <CategoryListCard
-          category="Mexican"
-          url={
-            "https://vanseodesign.com/blog/wp-content/uploads/2012/11/linear-gradient.png"
-          }
-          customOnPress={() => navigation.navigate("trendingVideoScreen")}
-        ></CategoryListCard>
+      {
+        state.data.map(category=>{
+          return(
+            <CategoryListCard
+            key={category.id}
+            category={category.Category}
+            url={
+              "https://vanseodesign.com/blog/wp-content/uploads/2012/11/linear-gradient.png"
+            }
+            customOnPress={() => navigation.navigate("trendingVideoScreen",{categoryName:category.Category})}
+          ></CategoryListCard>
+          )
+        })
+      }
       </ScrollView>
     </View>
   );
+  }
 }
 
 const styles = StyleSheet.create({

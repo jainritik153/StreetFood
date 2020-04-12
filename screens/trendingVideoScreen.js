@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState ,useReducer,useEffect} from "react";
 import {
   StyleSheet,
   Text,
@@ -9,7 +9,8 @@ import {
   StatusBar,
   ImageBackground,
   Modal,
-  Dimensions
+  Dimensions,
+ActivityIndicator
 } from "react-native";
 import Color from "../assets/color";
 import Search from "../components/Search";
@@ -35,18 +36,66 @@ const images = [
 
 const HEADER_HEIGHT = Platform.OS == "ios" ? 115 : 60 + StatusBar.currentHeight;
 
-const handlePress = uri => {};
 
-export default function TrendingVideoScreen({ navigation }) {
+const reducer=(state,action)=>{
+  switch (action.type) {
+    case 'FETCH_VIDEO':
+        return{
+          loading:false,
+          data:action.payload,
+          error:""
+        }
+        break;
+    case 'FETCH_ERROR':
+        return{
+          loading:false,
+          data:[],
+          error:"Something went wrong"
+        }    
+        break
+  }
+}
+
+const initialState={
+  loading:true,
+  data:[],
+  error:""
+}
+
+export default function TrendingVideoScreen({ navigation,route }) {
   // const [modalOpen,setModalOpen] =useState(false)  //react hooks with modalOpen VArible eith deafult value as false
   // const [imageuri,setImageuri] =useState("")
+  const {categoryName} = route.params;
+  const [state,dispatch]=useReducer(reducer,initialState)
 
-  const scrollY = new Animated.Value(0);
-  const diffClampScrollY = Animated.diffClamp(scrollY, 0, HEADER_HEIGHT);
-  const headerY = Animated.interpolate(diffClampScrollY, {
-    inputRange: [0, HEADER_HEIGHT],
-    outputRange: [0, -HEADER_HEIGHT]
-  });
+  useEffect(()=>{
+    fetch(`https://damp-refuge-17780.herokuapp.com/explore/${categoryName}`)
+      .then(res=>res.json())
+      .then(resjson=>{
+        dispatch({type:'FETCH_VIDEO',payload:resjson})
+      })
+      .catch(err=>{
+        dispatch({type:'FETCH_ERROR'})
+        console.log(err.message)
+      })
+  },[])
+
+   if (state.loading) {
+    return (
+      <View
+        style={{
+          flex: 1,
+          backgroundColor: "white",
+          justifyContent: "center",
+          alignContent: "center",
+        }}
+      >
+        <ActivityIndicator></ActivityIndicator>
+      </View>
+    );
+  }
+  else{
+  
   return (
     <View style={styles.container}>
       <Animated.ScrollView
@@ -57,11 +106,11 @@ export default function TrendingVideoScreen({ navigation }) {
         horizontal={true}
         scrollEventThrottle={16}
       >
-        {images.map(image => (
-          <View key={image.id} style={styles.imageConatiner}>
+        {state.data.map(videoInfo => (
+          <View key={videoInfo._id} style={styles.imageConatiner}>
             <ImageBackground
               resizeMode="cover"
-              source={{ uri: image.uri }}
+              source={{ uri: videoInfo.Url }}
               style={{
                 flex: 1,
                 height: undefined,
@@ -70,69 +119,13 @@ export default function TrendingVideoScreen({ navigation }) {
               }}
               imageStyle={{ borderRadius: 10 }}
             >
-              <View style={styles.cardHeaderContainer}>
-                <View style={styles.profileImage}>
-                  <Image
-                    source={{
-                      uri:
-                        "https://i.pinimg.com/originals/d4/d4/ee/d4d4ee8b3f45e22fa9306a1255c76d5c.jpg "
-                    }}
-                    style={styles.image}
-                  ></Image>
-                </View>
-                <View style={{ flex: 1, flexDirection: "column" }}>
-                  <TouchableOpacity>
-                    <Text
-                      style={{
-                        color: Color.main_color,
-                        marginTop: 5,
-                        fontSize: 15,
-                        fontWeight: "bold"
-                      }}
-                      onPress={() => navigation.navigate("vendorProfileScreen")}
-                    >
-                      Vendor Name
-                    </Text>
-                  </TouchableOpacity>
-
-                  <Text style={{ fontSize: 11, color: Color.main_color }}>
-                    1,162 followers
-                  </Text>
-                  <Text
-                    style={{
-                      fontSize: 11,
-                      color: Color.main_color,
-                      fontStyle: "italic"
-                    }}
-                  >
-                    Mira-Bhhayandar
-                  </Text>
-                </View>
-                <View style={{ flex: 1, flexDirection: "row" }}>
-                  <TouchableOpacity>
-                    <Text
-                      style={{
-                        alignSelf: "center",
-                        marginTop: 25,
-                        marginLeft: 70,
-                        fontSize: 15,
-                        fontWeight: "bold",
-                        color: Color.theme_color
-                      }}
-                    >
-                      + Follow
-                    </Text>
-                  </TouchableOpacity>
-                </View>
-              </View>
-
               <View style={styles.detailsContainer}>
                 <TouchableOpacity>
                   <Text
                     style={styles.title}
-                    onPress={() => navigation.navigate("videoDetails")}
+                    onPress={() => navigation.navigate("videoDetails",{videoDetailsInfo:videoInfo})}
                   >
-                    Dish Name with some description..
+                    {videoInfo.Dish_name}
                   </Text>
                 </TouchableOpacity>
 
@@ -140,7 +133,7 @@ export default function TrendingVideoScreen({ navigation }) {
                 <View
                   style={{ flexDirection: "row", alignItems: "flex-start" }}
                 >
-                  <Text style={styles.views}>108k views </Text>
+                  <Text style={styles.views}>{videoInfo.Likes} likes </Text>
                 </View>
               </View>
             </ImageBackground>
@@ -149,6 +142,9 @@ export default function TrendingVideoScreen({ navigation }) {
       </Animated.ScrollView>
     </View>
   );
+    
+  }
+
 }
 
 const styles = StyleSheet.create({

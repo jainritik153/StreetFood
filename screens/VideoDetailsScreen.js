@@ -60,9 +60,9 @@ export default function VideoDetails({ route, navigation }) {
         }}
       >
          {
-        videoDetailsInfo.Ingredients.map(item=>{
+        videoDetailsInfo.Ingredients.map((item,index)=>{
           return(
-            <Text style={styles.incgredients}>{item}</Text>
+            <Text key = {index} style={styles.incgredients}>{item}</Text>
           )
           })
         }
