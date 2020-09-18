@@ -17,26 +17,7 @@ import ExploreCard from "../components/ExploreComponent/exploreVideoCard";
 import exploreCategoryScreen from "./exploreCategoryScreen";
 const HEADER_HEIGHT = StatusBar.currentHeight;
 
-const categories = [
-  { id: 2, categoryName: "Chineese" },
-  { id: 3, categoryName: "Dosa Special" },
-  { id: 1, categoryName: "Italian Pizza" },
-  { id: 4, categoryName: "Pasta" },
-  { id: 5, categoryName: "Vada Pav" },
-  { id: 6, categoryName: "Bhel Special" },
-  { id: 7, categoryName: "Frankie" },
-  { id: 8, categoryName: "Pani Puri" },
-  { id: 9, categoryName: "Maggie" },
-  { id: 10, categoryName: "Cheesy Food" },
-];
 
-const images = [
-  { id: 1, uri: "https://naaniz.com/wp-content/uploads/2018/11/Vada-Pav.jpg" },
-  { id: 2, uri: "https://naaniz.com/wp-content/uploads/2018/11/Vada-Pav.jpg" },
-  { id: 3, uri: "https://naaniz.com/wp-content/uploads/2018/11/Vada-Pav.jpg" },
-  { id: 4, uri: "https://naaniz.com/wp-content/uploads/2018/11/Vada-Pav.jpg" },
-  { id: 5, uri: "https://naaniz.com/wp-content/uploads/2018/11/Vada-Pav.jpg" },
-];
 
 const reducer=(state,action)=>{
   switch (action.type) {

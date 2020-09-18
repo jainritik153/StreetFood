@@ -62,19 +62,15 @@ const liked = [
   },
 ];
 
-const username = "dineshch";
+const username = "Riya";
 const handleClick = (video_id, navigation) => {
   fetch(`https://damp-refuge-17780.herokuapp.com/getvideo/${video_id}`)
     .then((response) => response.json())
     .then((responseJson) => {
-      console.log(
-        "konsa hai yeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
-        responseJson
-      );
+      console.log(responseJson);
       navigation.navigate("videoDetails", { videoDetailsInfo: responseJson });
     });
 };
-
 
 export default function UserProfile({ navigation }) {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -113,17 +109,17 @@ export default function UserProfile({ navigation }) {
           <View style={{ marginTop: defaultHeight }}>
             <ProfileImageComponent
               imageUrl={
-                "https://lh3.googleusercontent.com/proxy/ErDRclXNJAML1EoOqTyjsgnvbJTJNrGs64y5TkEWJYFJhU1kOq8G8Y1EktNot_Fx5twoYJzcDXlAs-tJQ6Xe2wM_nACJuHTWs4oJA8F8V_II5rt3EYumnoYsS38"
+                "https://cdn3.vectorstock.com/i/1000x1000/30/97/flat-business-man-user-profile-avatar-icon-vector-4333097.jpg"
               }
             />
           </View>
 
           <View style={styles.infoContainer}>
             <Text style={[styles.text, { fontWeight: "200", fontSize: 30 }]}>
-              {state.data[0].Username}
+              {username}
             </Text>
             <Text style={[styles.text, { fontWeight: "200", fontSize: 15 }]}>
-              {state.data[0].Email_id}
+              riya@gmail.com
             </Text>
           </View>
 
@@ -172,10 +168,7 @@ export default function UserProfile({ navigation }) {
                       onPress={() => handleClick(like.video_id, navigation)}
                       key={like.video_id}
                     >
-                      <View
-                        style={styles.mediaImageContainer}
-                        
-                      >
+                      <View style={styles.mediaImageContainer}>
                         <Image
                           resizeMode="cover"
                           style={styles.image}
